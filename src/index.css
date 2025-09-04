@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Actay";
+    src: url("/fonts/Actay-Regular.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Actay";
+    src: url("/fonts/Actay-RegularItalic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+}
+@font-face {
+    font-family: "ActayCondensed";
+    src: url("/fonts/ActayCondensed-Thin.otf") format("opentype");
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ActayCondensed";
+    src: url("/fonts/ActayCondensed-ThinItalic.otf") format("opentype");
+    font-weight: 200;
+    font-style: italic;
+}
+@font-face {
+    font-family: "ActayWide";
+    src: url("/fonts/ActayWide-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/Gilroy-Light.otf") format("opentype");
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Gilroy";
+    src: url("/fonts/Gilroy-ExtraBold.otf") format("opentype");
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face{font-family:"Actay";src:url("/fonts/Actay-Regular.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:"Actay";src:url("/fonts/ActayCondensed-Thin.otf") format("opentype");font-weight:300;font-style:normal;font-display:swap;}
+body { overflow-y:auto; }
+body::-webkit-scrollbar { width:8px; }
+body::-webkit-scrollbar-thumb { background: transparent; } /* визуально «нет» */
+
+html, body { background-color: #1B1B1B; }
+
+@keyframes marquee {
+    0%   { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+    animation: marquee 15s linear infinite;
+    width: max-content;
+}

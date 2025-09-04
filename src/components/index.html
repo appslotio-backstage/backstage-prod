@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backstage - Организация съемок под ключ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hero-background {
+            background: linear-gradient(0deg, rgba(27, 27, 27, 0.60) 0%, rgba(27, 27, 27, 0.60) 100%),
+                        url('https://api.builder.io/api/v1/image/assets/TEMP/2ca18cf58f80ba0a27a941c9d41265de3ecadf95?width=3988') lightgray 0px -1062.83px / 100% 311.819% no-repeat;
+        }
+
+        .feature-bg {
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI5NCIgaGVpZ2h0PSIyMDkiIHZpZXdCb3g9IjAgMCAxMjk0IDIwOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyODQuODQgMTkuODkzNEMxMjk3LjEgMTguMDg4OCAxMjk1Ljc4IDAgMTI4My4zOCAwSDkuOTk5ODhDNC40NzcwNSAwIC0wLjAwMDEyMjA3IDQuNDc3MTUgLTAuMDAwMTIyMDcgMTBWMTk3LjQyQy0wLjAwMDEyMjA3IDIwMy41MjMgNS40MTg1OCAyMDguMjAyIDExLjQ1NjEgMjA3LjMxNEwxMjg0Ljg0IDE5Ljg5MzRaIiBmaWxsPSIjMUIxQjFCIiBmaWxsLW9wYWNpdHk9IjAuMyIvPgo8L3N2Zz4K') no-repeat center;
+            background-size: cover;
+        }
+
+        .ticker {
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .nav-arrow {
+            background: rgba(63, 63, 63, 0.8);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(240, 101, 18, 0.8);
+        }
+
+        .social-icon:hover {
+            fill: #F06512;
+        }
+
+        .radio-selected circle:last-child {
+            fill: #F06512;
+        }
+
+        .decorative-line-1, .decorative-line-2 {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden relative w-full bg-zinc-900 text-neutral-300">
+    <!-- Hero Section -->
+    <section class="flex relative flex-col items-center w-full h-[924px]">
+        <!-- Background SVG -->
+        <div class="absolute inset-0 w-full h-full">
+            <svg width="1920" height="924" viewBox="0 0 1919 924" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <path d="M0 0H1920V845L1746 857H1453L1303.5 901.5L1190 922L1136 923.5L1043.5 903.5L951 889L589.5 876L504.5 882L404 906L351.5 887.5L151.5 859.5L107.5 852.5L31.5 866L0 857.5V0Z" fill="url(#heroPattern)" />
+                <path d="M0 0H1920V845L1746 857H1453L1303.5 901.5L1190 922L1136 923.5L1043.5 903.5L951 889L589.5 876L504.5 882L404 906L351.5 887.5L151.5 859.5L107.5 852.5L31.5 866L0 857.5V0Z" fill="#1B1B1B" fill-opacity="0.6" />
+                <defs>
+                    <pattern id="heroPattern" patternContentUnits="objectBoundingBox" width="1" height="1">
+                        <image href="https://api.builder.io/api/v1/image/assets/TEMP/2ca18cf58f80ba0a27a941c9d41265de3ecadf95?width=3988" width="1" height="1" preserveAspectRatio="xMidYMid slice" />
+                    </pattern>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex relative z-10 justify-between items-center px-64 pt-10 pb-0 w-full max-w-[1420px] max-md:px-12 max-md:pt-10 max-md:pb-0 max-sm:flex-col max-sm:gap-5 max-sm:px-5 max-sm:pt-5 max-sm:pb-0">
+            <div class="text-xl font-bold uppercase text-neutral-300">BACKSTAGE</div>
+
+            <div class="flex gap-12 items-center max-md:hidden">
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Главная</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Услуги</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Стили</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Прайс</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Портфолио</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Отзывы</a>
+            </div>
+
+            <div class="flex flex-col gap-2.5 items-end max-sm:items-center">
+                <div class="text-base text-neutral-300">+7(000)000-00-00</div>
+                <a href="#" class="text-base text-orange-600 underline hover:text-orange-500 transition-colors">Заказать звонок</a>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="flex relative z-10 flex-col items-center mt-52 text-center">
+            <h1 class="mb-5 text-9xl font-black text-orange-600 uppercase max-md:text-8xl max-sm:text-6xl">BACKSTAGE</h1>
+            <p class="mb-20 text-4xl text-neutral-400 max-md:text-3xl max-sm:text-2xl">Организация съемок «под ключ»</p>
+            <button class="flex justify-center items-center px-10 py-5 text-base font-semibold bg-orange-600 hover:bg-orange-700 cursor-pointer rounded-[30px] text-zinc-900 transition-colors">
+                Заказать съемку
+            </button>
+        </div>
+
+        <!-- Torn Paper Edge -->
+        <img src="https://api.builder.io/api/v1/image/assets/TEMP/2ca18cf58f80ba0a27a941c9d41265de3ecadf95?width=3988" alt="" class="absolute shadow-2xl bottom-[-100px] h-[213px] left-[-37px] w-[1994px] z-[5]" />
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="relative px-64 pt-52 pb-24 text-center max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-16 text-5xl font-semibold leading-10 max-sm:text-3xl">
+            <span class="text-neutral-300">Почему </span>
+            <span class="text-orange-600">стоить </span>
+            <span class="text-orange-600">доверить </span>
+            <span class="text-neutral-300">организацию </span>
+            <span class="text-orange-600">Backstage</span>
+        </h2>
+
+        <p class="mx-auto mt-0 mb-20 text-base max-w-[489px] text-neutral-300">
+            Мы создаем не просто фотосессии, а уникальные истории, где каждая деталь отражает вашу индивидуальность
+        </p>
+
+        <div class="flex flex-col gap-5 mx-auto my-0 max-w-[1180px]">
+            <!-- Feature 1 -->
+            <div class="flex relative items-center h-[209px]">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M1284.84 19.8934C1297.1 18.0888 1295.78 0 1283.38 0H9.99988C4.47705 0 -0.00012207 4.47715 -0.00012207 10V197.42C-0.00012207 203.523 5.41858 208.202 11.4561 207.314L1284.84 19.8934Z" fill="url(#featurePattern1)" />
+                        <path d="M1283.38 0.5H10C4.75331 0.5 0.5 4.7533 0.5 10V197.421C0.500271 203.218 5.64754 207.663 11.3828 206.819L1284.77 19.3984C1296.23 17.7108 1295.19 1.03322 1283.93 0.512695L1283.38 0.5Z" stroke="#F06512" stroke-opacity="0.5" />
+                        <defs>
+                            <pattern id="featurePattern1" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Все под ключ</h3>
+                    <p class="text-base text-neutral-300">От подбора локации до обработки фото</p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="flex relative items-center h-[209px] justify-end">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M9.16116 189.107C-3.09979 190.911 -1.77591 209 10.6171 209H1284C1289.52 209 1294 204.523 1294 199V11.5796C1294 5.47699 1288.58 0.797531 1282.54 1.68616L9.16116 189.107Z" fill="url(#featurePattern2)" />
+                        <path d="M10.6172 208.5H1284C1289.25 208.5 1293.5 204.247 1293.5 199V11.5791C1293.5 5.78204 1288.35 1.33679 1282.62 2.18066L9.23438 189.602C-2.23171 191.289 -1.1923 207.967 10.0732 208.487L10.6172 208.5Z" stroke="#F06512" stroke-opacity="0.5" />
+                        <defs>
+                            <pattern id="featurePattern2" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 text-right max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Индивидуальный подход к каждому клиенту</h3>
+                    <p class="text-base text-neutral-300">Создаем атмосферу, где вы чувствуете себя собой</p>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="flex relative items-center h-[209px]">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M1284.84 19.8934C1297.1 18.0888 1295.78 0 1283.38 0H9.99988C4.47705 0 -0.00012207 4.47715 -0.00012207 10V197.42C-0.00012207 203.523 5.41858 208.202 11.4561 207.314L1284.84 19.8934Z" fill="url(#featurePattern3)" />
+                        <path d="M1283.38 0.5H10C4.75331 0.5 0.5 4.7533 0.5 10V197.421C0.500271 203.218 5.64754 207.663 11.3828 206.819L1284.77 19.3984C1296.23 17.7108 1295.19 1.03322 1283.93 0.512695L1283.38 0.5Z" stroke="#F06512" stroke-opacity="0.5" />
+                        <defs>
+                            <pattern id="featurePattern3" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Идеальные кадры</h3>
+                    <p class="text-base text-neutral-300">Лучшее качество обработки и ретуши</p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="flex relative items-center h-[209px] justify-end">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M9.16116 189.107C-3.09979 190.911 -1.77591 209 10.6171 209H1284C1289.52 209 1294 204.523 1294 199V11.5796C1294 5.47699 1288.58 0.797531 1282.54 1.68616L9.16116 189.107Z" fill="url(#featurePattern4)" />
+                        <path d="M10.6172 208.5H1284C1289.25 208.5 1293.5 204.247 1293.5 199V11.5791C1293.5 5.78204 1288.35 1.33679 1282.62 2.18066L9.23438 189.602C-2.23171 191.289 -1.1923 207.967 10.0732 208.487L10.6172 208.5Z" stroke="#F06512" stroke-opacity="0.5" />
+                        <defs>
+                            <pattern id="featurePattern4" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 text-right max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Команда профи</h3>
+                    <p class="text-base text-neutral-300">Самые лучшие мастера города</p>
+                </div>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="flex relative items-center h-[209px]">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M9.16116 189.107C-3.09979 190.911 -1.77591 209 10.6171 209H1284C1289.52 209 1294 204.523 1294 199V11.5796C1294 5.47699 1288.58 0.797531 1282.54 1.68616L9.16116 189.107Z" fill="url(#featurePattern5)" fill-opacity="0.2" />
+                        <path d="M10.6172 208.5H1284C1289.25 208.5 1293.5 204.247 1293.5 199V11.5791C1293.5 5.78204 1288.35 1.33679 1282.62 2.18066L9.23438 189.602C-2.23171 191.289 -1.1923 207.967 10.0732 208.487L10.6172 208.5Z" stroke="#F06512" stroke-opacity="0.3" />
+                        <defs>
+                            <pattern id="featurePattern5" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Внимание к деталям</h3>
+                    <p class="text-base text-neutral-300">Реализуем любой стиль и идею</p>
+                </div>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="flex relative items-center h-[209px] justify-end">
+                <div class="absolute inset-0 w-full h-full">
+                    <svg width="1294" height="209" viewBox="0 0 1294 209" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                        <path d="M1284.84 19.8934C1297.1 18.0888 1295.78 0 1283.38 0H9.99988C4.47705 0 -0.00012207 4.47715 -0.00012207 10V197.42C-0.00012207 203.523 5.41858 208.202 11.4561 207.314L1284.84 19.8934Z" fill="url(#featurePattern6)" />
+                        <path d="M1284.84 19.8934C1297.1 18.0888 1295.78 0 1283.38 0H9.99988C4.47705 0 -0.00012207 4.47715 -0.00012207 10V197.42C-0.00012207 203.523 5.41858 208.202 11.4561 207.314L1284.84 19.8934Z" fill="#1B1B1B" fill-opacity="0.3" />
+                        <path d="M1283.38 0.5H10C4.75331 0.5 0.5 4.7533 0.5 10V197.421C0.500271 203.218 5.64754 207.663 11.3828 206.819L1284.77 19.3984C1296.23 17.7108 1295.19 1.03322 1283.93 0.512695L1283.38 0.5Z" stroke="#F06512" stroke-opacity="0.5" />
+                        <defs>
+                            <pattern id="featurePattern6" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                <rect width="1" height="1" fill="#1B1B1B" fill-opacity="0.3" />
+                            </pattern>
+                        </defs>
+                    </svg>
+                </div>
+                <div class="relative z-10 px-10 py-0 text-right max-w-[400px]">
+                    <h3 class="mb-2.5 text-2xl font-bold text-neutral-300">Команда профи</h3>
+                    <p class="text-base text-neutral-300">Самые лучшие мастера города</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="relative px-64 py-24 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-5 text-5xl font-semibold leading-10 text-left max-sm:text-3xl">Портфолио</h2>
+        <div class="mb-10 text-2xl text-orange-600 ml-[649px]">Love story</div>
+
+        <div class="grid relative gap-5 mb-16 grid-cols-[repeat(5,380px)] grid-rows-[repeat(3,374px)] max-md:gap-4 max-md:grid-cols-[repeat(3,1fr)] max-sm:grid-cols-[1fr]">
+            <!-- Left Arrow -->
+            <button class="nav-arrow absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.134 13.1199L28.012 10.9999L16.454 22.5539C16.2676 22.7391 16.1198 22.9592 16.0189 23.2017C15.918 23.4442 15.8661 23.7043 15.8661 23.9669C15.8661 24.2296 15.918 24.4897 16.0189 24.7322C16.1198 24.9747 16.2676 25.1948 16.454 25.3799L28.012 36.9399L30.132 34.8199L19.284 23.9699L30.134 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+
+            <!-- Portfolio Images -->
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/9b36cc246c65d074f34b2725d3bf828909734f40?width=1160" alt="" class="object-cover rounded-[30px] w-full h-full" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/25dc20543d71e3caf8bf9872b29590f4ccb4575d?width=1160" alt="" class="object-cover rounded-[30px] w-full h-full" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/96c309b7d8e46cb342f7e36a9b3600a1fff86a98?width=1160" alt="" class="object-cover rounded-[30px] w-full h-full" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/ea16dc2fcb2ecbc867dd1e2235d384228f9a257f?width=1160" alt="" class="object-cover rounded-[30px] w-full h-full" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/9b36cc246c65d074f34b2725d3bf828909734f40?width=1160" alt="" class="object-cover rounded-[30px] w-full h-full" />
+
+            <!-- Right Arrow -->
+            <button class="nav-arrow absolute right-0 top-1/2 transform -translate-y-1/2 w-12 h-12 flex items-center justify-center z-10">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.866 13.1199L19.988 10.9999L31.546 22.5539C31.7323 22.7391 31.8802 22.9592 31.9811 23.2017C32.082 23.4442 32.1339 23.7043 32.1339 23.9669C32.1339 24.2296 32.082 24.4897 31.9811 24.7322C31.8802 24.9747 31.7323 25.1948 31.546 25.3799L19.988 36.9399L17.868 34.8199L28.716 23.9699L17.866 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+        </div>
+
+        <button class="flex justify-center items-center px-10 py-5 mx-auto my-0 text-base font-semibold bg-orange-600 hover:bg-orange-700 cursor-pointer rounded-[30px] text-zinc-900 w-[260px] transition-colors">
+            Подробнее
+        </button>
+    </section>
+
+    <!-- Services Section -->
+    <section class="relative px-64 py-24 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-16 text-5xl font-semibold leading-10 text-left max-sm:text-3xl">Мы можем</h2>
+
+        <div class="grid gap-5 mb-16 grid-cols-[repeat(5,380px)] max-md:gap-4 max-md:grid-cols-[repeat(3,1fr)] max-sm:grid-cols-[1fr]">
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/832ac7182cd67e0fc633a487c894416ba2333b53?width=760" alt="" class="object-cover h-[374px] rounded-[30px] w-[380px]" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/502b710671abac68e470bdb9f9f2bd08c1e23a7f?width=760" alt="" class="object-cover h-[374px] rounded-[30px] w-[380px]" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/79acea507c061160a6f0af2222a69e26aa6b8ce7?width=760" alt="" class="object-cover h-[374px] rounded-[30px] w-[380px]" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/44e6392d885ad9e3126708550fe5142b7b63a175?width=760" alt="" class="object-cover h-[374px] rounded-[30px] w-[380px]" />
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/256e8ba33d9cc4676c3cf07ebb335cd5eb555667?width=760" alt="" class="object-cover h-[374px] rounded-[30px] w-[380px]" />
+        </div>
+
+        <button class="flex justify-center items-center px-10 py-5 mx-auto my-0 text-base font-semibold bg-orange-600 hover:bg-orange-700 cursor-pointer rounded-[30px] text-zinc-900 w-[260px] transition-colors">
+            Полный перечень услуг
+        </button>
+    </section>
+
+    <!-- Brand Ticker -->
+    <div class="flex overflow-hidden gap-4 items-center px-0 py-4 w-full border-t border-b border-solid border-y-zinc-700">
+        <div class="flex gap-4 ticker">
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+            <div class="text-2xl uppercase whitespace-nowrap text-zinc-700">Backstage</div>
+        </div>
+    </div>
+
+    <!-- Styles Section -->
+    <section class="relative px-64 py-24 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-16 text-5xl font-semibold leading-10 text-center max-sm:text-3xl">Выберите свой стиль</h2>
+
+        <div class="grid gap-5 justify-center mb-10 grid-cols-[repeat(3,380px)] max-md:gap-4 max-md:grid-cols-[repeat(2,1fr)] max-sm:grid-cols-[1fr]">
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/a74e84dcb4b57cf0c591df13a82109f9e4bfb3f5?width=760" alt="" class="object-cover mb-5 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-2 text-xl font-bold text-neutral-300">Love story</h3>
+                <p class="text-base text-neutral-300">Романтические кадры для пары</p>
+            </article>
+
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/2d06eb05ce007c9d5c6462d34f01c114863b2b78?width=760" alt="" class="object-cover mb-5 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-2 text-xl font-bold text-neutral-300">Индивидуальная съемка</h3>
+                <p class="text-base text-neutral-300">Ваша уникальность в каждом кадре</p>
+            </article>
+
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/451d3c1fa6d44a259f0a139f9ccb30307530c8e3?width=760" alt="" class="object-cover mb-5 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-2 text-xl font-bold text-neutral-300">Fashion-съемка</h3>
+                <p class="text-base text-neutral-300">Стильные образы и тренды</p>
+            </article>
+        </div>
+
+        <div class="flex gap-5 justify-center">
+            <button class="nav-arrow w-12 h-12 flex items-center justify-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.1339 13.1199L28.0119 10.9999L16.4539 22.5539C16.2676 22.7391 16.1198 22.9592 16.0189 23.2017C15.918 23.4442 15.866 23.7043 15.866 23.9669C15.866 24.2296 15.918 24.4897 16.0189 24.7322C16.1198 24.9747 16.2676 25.1948 16.4539 25.3799L28.0119 36.9399L30.1319 34.8199L19.2839 23.9699L30.1339 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow w-12 h-12 flex items-center justify-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.8661 13.1199L19.9881 10.9999L31.5461 22.5539C31.7324 22.7391 31.8802 22.9592 31.9811 23.2017C32.082 23.4442 32.134 23.7043 32.134 23.9669C32.134 24.2296 32.082 24.4897 31.9811 24.7322C31.8802 24.9747 31.7324 25.1948 31.5461 25.3799L19.9881 36.9399L17.8681 34.8199L28.7161 23.9699L17.8661 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="relative px-64 py-24 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-5 text-5xl font-semibold leading-10 text-center max-sm:text-3xl">Стоимость услуг</h2>
+        <p class="mx-auto mt-0 mb-16 text-base text-center max-w-[493px] text-neutral-300">
+            В стоимость входит организация вашей съемки "под ключ" от выбора стиля до получения готовых фото и видео
+        </p>
+
+        <div class="grid gap-52 mx-auto my-0 grid-cols-[repeat(3,1fr)] max-w-[1800px] max-md:gap-10 max-md:grid-cols-[1fr]">
+            <!-- Photo Services -->
+            <div class="flex flex-col gap-5">
+                <h3 class="mb-5 text-3xl font-bold text-center text-neutral-300">Фото</h3>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Индивидуальная фотосессия</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">1 час съемки<br />20 обработанных фото</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ 5000 ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Семейная фотосессия</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">2 часа съемки<br />40 обработанных фото</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ 5000 ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Услуга 3</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">Описание Описание</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ 6000 ₽</div>
+                </div>
+            </div>
+
+            <!-- Video Services -->
+            <div class="flex flex-col gap-5">
+                <h3 class="mb-5 text-3xl font-bold text-center text-neutral-300">Видео</h3>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Индивидуальная видеосъемка</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">1 час съемки<br />20 обработанных видео</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Семейная съемка</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">2 часа съемки<br />40 обработанных видео</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Услуга 3</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">Описание описание</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+            </div>
+
+            <!-- Additional Services -->
+            <div class="flex flex-col gap-5">
+                <h3 class="mb-5 text-3xl font-bold text-center text-neutral-300">Доп. услуги</h3>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Визажист</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">Описание описание</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Визажист</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">Описание описание</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+
+                <div class="flex flex-col justify-between p-8 border border-solid bg-neutral-800 border-orange-600 border-opacity-50 h-[154px] rounded-[30px]">
+                    <h4 class="mb-2.5 text-xl font-bold text-neutral-300">Визажист</h4>
+                    <p class="mb-2.5 text-base text-neutral-300">Описание описание</p>
+                    <div class="text-xl font-bold text-neutral-300">ОТ ХХХХ ₽</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="relative px-64 py-24 text-center max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-5 text-5xl font-semibold leading-10 max-sm:text-3xl">Закажите свою фотосессию</h2>
+        <p class="mx-auto mt-0 mb-16 text-base max-w-[470px] text-neutral-300">
+            Оставьте свои контакты и мы свяжемся с вами для уточнения деталей съемки
+        </p>
+        <button class="flex justify-center items-center px-10 py-5 mx-auto my-0 text-base font-semibold bg-orange-600 hover:bg-orange-700 cursor-pointer rounded-[30px] text-zinc-900 w-[260px] transition-colors">
+            Заказать съемку
+        </button>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="relative px-64 py-24 text-center max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mx-auto mb-16 text-5xl font-semibold leading-10 max-w-[1031px] max-sm:text-3xl">
+            <span class="text-neutral-300">Ответьте на вопросы и получите скидку </span>
+            <span class="text-orange-600">-10% </span>
+            <span class="text-neutral-300">на организацию фотосессии «под ключ»</span>
+        </h2>
+
+        <div class="flex relative gap-16 justify-center items-center mb-16 max-md:flex-col max-md:gap-10">
+            <img src="https://api.builder.io/api/v1/image/assets/TEMP/148e5a05496a3e0678c256ba4a7e6ca4760f5209?width=1100" alt="" class="object-cover rounded-3xl h-[371px] w-[550px] max-md:w-full max-md:max-w-[550px]" />
+
+            <div class="flex flex-col justify-between p-10 border border-solid backdrop-blur-[6px] bg-neutral-800 bg-opacity-10 border-orange-600 border-opacity-50 h-[431px] rounded-[30px] w-[580px] max-md:w-full max-md:max-w-[580px] max-sm:p-8 max-sm:h-auto">
+                <h3 class="mb-10 text-2xl font-bold text-left text-neutral-300">Какой стиль фотосессий вам интересен?</h3>
+
+                <div class="flex flex-col gap-5 mb-10">
+                    <label class="flex gap-5 items-center text-base text-neutral-300 cursor-pointer">
+                        <input type="radio" name="style" value="love-story" class="hidden" checked />
+                        <div class="radio-selected">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10" r="9.5" stroke="#D4D4D4" />
+                                <circle cx="10" cy="10" r="7" fill="#F06512" />
+                            </svg>
+                        </div>
+                        <span>Love story</span>
+                    </label>
+
+                    <label class="flex gap-5 items-center text-base text-neutral-300 cursor-pointer">
+                        <input type="radio" name="style" value="family" class="hidden" />
+                        <div class="radio-unselected">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10" r="9.5" stroke="#D4D4D4" />
+                            </svg>
+                        </div>
+                        <span>Семейная</span>
+                    </label>
+
+                    <label class="flex gap-5 items-center text-base text-neutral-300 cursor-pointer">
+                        <input type="radio" name="style" value="business" class="hidden" />
+                        <div class="radio-unselected">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10" r="9.5" stroke="#D4D4D4" />
+                            </svg>
+                        </div>
+                        <span>Деловая</span>
+                    </label>
+
+                    <label class="flex gap-5 items-center text-base text-neutral-300 cursor-pointer">
+                        <input type="radio" name="style" value="fashion" class="hidden" />
+                        <div class="radio-unselected">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10" r="9.5" stroke="#D4D4D4" />
+                            </svg>
+                        </div>
+                        <span>Fashion</span>
+                    </label>
+                </div>
+
+                <button class="inline-flex gap-2.5 items-center self-end px-6 py-2.5 text-base bg-orange-600 hover:bg-orange-700 cursor-pointer rounded-[30px] text-zinc-900 transition-colors">
+                    <span>Далее</span>
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="transform rotate-90">
+                        <path d="M10.195 13.8302L15 9.00022L10.195 4.17022C10.1516 4.11324 10.0965 4.06624 10.0333 4.03241C9.9702 3.99859 9.90053 3.97872 9.82904 3.97416C9.75756 3.9696 9.68593 3.98045 9.61901 4.00598C9.55208 4.03151 9.49142 4.07112 9.44114 4.12213C9.39085 4.17313 9.35211 4.23435 9.32754 4.30164C9.30297 4.36892 9.29315 4.44069 9.29873 4.51211C9.30431 4.58352 9.32517 4.65289 9.35989 4.71554C9.39462 4.77819 9.4424 4.83265 9.5 4.87522L13.095 8.50022L3.53 8.50022C3.39739 8.50022 3.27021 8.5529 3.17645 8.64667C3.08268 8.74044 3.03 8.86762 3.03 9.00022C3.03 9.13283 3.08268 9.26001 3.17645 9.35378C3.27021 9.44755 3.39739 9.50022 3.53 9.50022L13.095 9.50022L9.5 13.1252C9.40651 13.2194 9.35425 13.3468 9.35472 13.4795C9.35519 13.6122 9.40835 13.7392 9.5025 13.8327C9.59665 13.9262 9.72409 13.9785 9.85677 13.978C9.98945 13.9775 10.1165 13.9244 10.21 13.8302L10.195 13.8302Z" fill="#1B1B1B"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="relative px-64 py-24 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <h2 class="mb-16 text-5xl font-semibold leading-10 text-center max-sm:text-3xl">Отзывы</h2>
+
+        <div class="grid gap-5 justify-center mb-10 grid-cols-[repeat(3,380px)] max-md:gap-4 max-md:grid-cols-[repeat(2,1fr)] max-sm:grid-cols-[1fr]">
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/11df90011ecb2b0596de1915d8d0da9cc90d9685?width=760" alt="" class="object-cover mb-5 border border-solid border-orange-600 border-opacity-50 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-4 text-xl font-bold text-neutral-300">Ирина Апостолова</h3>
+                <p class="text-base text-neutral-300">Анна, благодарю Вас за волшебную фотосессию! Это было чудесно, много эмоций и улыбок…. Ощущение совершенного состояния души и тела!💚 Спасибо Вам, что приехали в Москву, в тот день, когда я хотела, это ценно! Фотографии все шикарные, останутся самые теплые, нежные, добрые и в то же время искрящиеся, харизматичные, страстные, соблазнительные воспоминания! 🌟</p>
+            </article>
+
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/d042e06757308d303a384db3d267b1e54b373100?width=760" alt="" class="object-cover mb-5 border border-solid border-orange-600 border-opacity-50 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-4 text-xl font-bold text-neutral-300">Марк Фоткин</h3>
+                <p class="text-base text-neutral-300">Анна, благодарю Вас за волшебную фотосессию! Это было чудесно, много эмоций и улыбок…. Ощущение совершенного состояния души и тела!💚 Спасибо Вам, что приехали в Москву, в тот день, когда я хотела, это ценно!</p>
+            </article>
+
+            <article class="flex flex-col items-start">
+                <img src="https://api.builder.io/api/v1/image/assets/TEMP/3fc5d6a378865104f0ef7b2af5d4de191ec038e8?width=760" alt="" class="object-cover mb-5 border border-solid border-orange-600 border-opacity-50 h-[374px] rounded-[30px] w-[380px]" />
+                <h3 class="mb-4 text-xl font-bold text-neutral-300">Митя Петров</h3>
+                <p class="text-base text-neutral-300">Анна, благодарю Вас за волшебную фотосессию! Это было чудесно, много эмоций и улыбок…. Ощущение совершенного состояния души и тела!💚 Спасибо Вам, что приехали в Москву, в тот день, когда я хотела, это ценно! Фотографии все шикарные, останутся самые теплые, нежные, добрые и в то же время искрящиеся, харизматичные, страстные, соблазнительные воспоминания! 🌟</p>
+            </article>
+        </div>
+
+        <div class="flex gap-5 justify-center mb-10">
+            <button class="nav-arrow w-12 h-12 flex items-center justify-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30.1339 13.1199L28.0119 10.9999L16.4539 22.5539C16.2676 22.7391 16.1198 22.9592 16.0189 23.2017C15.918 23.4442 15.866 23.7043 15.866 23.9669C15.866 24.2296 15.918 24.4897 16.0189 24.7322C16.1198 24.9747 16.2676 25.1948 16.4539 25.3799L28.0119 36.9399L30.1319 34.8199L19.2839 23.9699L30.1339 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+
+            <button class="nav-arrow w-12 h-12 flex items-center justify-center">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.8661 13.1199L19.9881 10.9999L31.5461 22.5539C31.7324 22.7391 31.8802 22.9592 31.9811 23.2017C32.082 23.4442 32.134 23.7043 32.134 23.9669C32.134 24.2296 32.082 24.4897 31.9811 24.7322C31.8802 24.9747 31.7324 25.1948 31.5461 25.3799L19.9881 36.9399L17.8681 34.8199L28.7161 23.9699L17.8661 13.1199Z" fill="#3F3F3F"/>
+                </svg>
+            </button>
+        </div>
+
+        <p class="mx-auto mt-0 mb-16 text-base text-center max-w-[470px] text-neutral-300">
+            Оставьте свои контакты и мы свяжемся с вами для уточнения деталей съемки
+        </p>
+        
+
+    <!-- Footer -->
+    <footer class="relative px-64 pt-24 pb-12 max-md:px-12 max-sm:px-5 max-sm:py-12">
+        <div class="mb-10 text-xl font-bold uppercase text-neutral-300">BACKSTAGE</div>
+
+        <!-- Background Text -->
+        <div class="absolute top-2/4 left-2/4 font-black uppercase -translate-x-2/4 -translate-y-2/4 blur-[7.5px] text-[212px] text-orange-600 text-opacity-20 z-[1] pointer-events-none">
+            Backstage
+        </div>
+
+        <div class="flex relative z-10 justify-between mb-10 max-sm:flex-col max-sm:gap-10">
+            <nav class="grid gap-5 grid-cols-[repeat(2,1fr)] w-[212px] max-sm:gap-5 max-sm:grid-cols-[1fr]">
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Главная</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Прайс</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Услуги</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Портфолио</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Стили</a>
+                <a href="#" class="relative pb-2 text-base text-neutral-300 hover:text-orange-600 transition-colors">Отзывы</a>
+            </nav>
+
+            <div class="flex flex-col gap-2.5 text-right max-sm:text-left">
+                <address class="text-base text-neutral-300 not-italic">
+                    Адрес:<br /><br /><br />
+                    +7 (000)000-00-00
+                </address>
+                <a href="mailto:backstage@pochta.ru" class="text-base text-neutral-300 hover:text-orange-600 transition-colors">backstage@pochta.ru</a>
+            </div>
+        </div>
+
+        <div class="flex relative z-10 gap-8 justify-center items-center mb-10">
+            <a href="#" class="social-icon w-[38px] h-[38px] cursor-pointer transition-colors">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2_209)">
+                        <path d="M15.0243 0.00670312L16.1785 0.00195312H21.8215L22.9773 0.00670312L24.4245 0.0225365L25.1101 0.0336198L25.7719 0.0510365L26.41 0.0732031L27.0243 0.0985365L27.6165 0.131786L28.1865 0.17137L28.7327 0.21887L29.26 0.27112C32.015 0.581453 33.9039 1.24645 35.3289 2.67145C36.7539 4.09645 37.4189 5.98379 37.7293 8.74037L37.7831 9.26762L37.829 9.81545L37.8686 10.3855L37.9002 10.976L37.9398 11.907L37.9588 12.5562L37.9794 13.5759L37.9937 15.0246L38 16.5763L37.9984 21.8219L37.9937 22.9777L37.9778 24.4249L37.9668 25.1105L37.9493 25.7723L37.9272 26.4104L37.9018 27.0247L37.8686 27.6169L37.829 28.1869L37.7815 28.7331L37.7293 29.2604C37.4189 32.0154 36.7539 33.9043 35.3289 35.3293C33.9039 36.7543 32.0166 37.4193 29.26 37.7296L28.7327 37.7835L28.1849 37.8294L27.6149 37.869L27.0243 37.9006L26.0933 37.9402L25.4442 37.9592L24.4245 37.9798L22.9757 37.994L21.4241 38.0004L16.1785 37.9988L15.0227 37.994L13.5755 37.9782L12.8899 37.9671L12.2281 37.9497L11.59 37.9275L10.9757 37.9022L10.3835 37.869L9.8135 37.8294L9.26725 37.7819L8.74 37.7296C5.985 37.4193 4.09608 36.7543 2.67108 35.3293C1.24608 33.9043 0.581083 32.017 0.27075 29.2604L0.216917 28.7331L0.171 28.1853L0.131417 27.6153L0.09975 27.0247L0.0601667 26.0937L0.0411667 25.4445L0.0205833 24.4249L0.00633333 22.9761L0 21.4245L0.00158333 16.1789L0.00633333 15.023L0.0221667 13.5759L0.03325 12.8903L0.0506667 12.2285L0.0728333 11.5904L0.0981667 10.976L0.131417 10.3839L0.171 9.81387L0.2185 9.26762L0.27075 8.74037C0.581083 5.98537 1.24608 4.09645 2.67108 2.67145C4.09608 1.24645 5.98342 0.581453 8.74 0.27112L9.26725 0.217286L9.81508 0.17137L10.3851 0.131786L10.9757 0.10012L11.9067 0.0605365L12.5558 0.0415365L13.5755 0.0209531L15.0243 0.00670312ZM10.7508 11.5587H6.4125C6.61833 21.4387 11.5583 27.3762 20.2192 27.3762H20.71V21.7237C23.8925 22.0404 26.2992 24.3679 27.265 27.3762H31.7617C30.5267 22.8795 27.2808 20.3937 25.2542 19.4437C27.2808 18.272 30.1308 15.422 30.8117 11.5587H26.7267C25.84 14.6937 23.2117 17.5437 20.71 17.8129V11.5587H16.625V22.5154C14.0917 21.882 10.8933 18.8104 10.7508 11.5587Z" fill="#D4D4D4"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_2_209">
+                            <rect width="38" height="38" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </a>
+
+            <a href="#" class="social-icon w-[38px] h-[38px] cursor-pointer transition-colors">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2_211)">
+                        <path d="M38 8.645C37.9774 7.82535 37.914 7.00734 37.81 6.194C37.6679 5.4818 37.4315 4.79171 37.107 4.142C36.7662 3.43803 36.3102 2.79588 35.758 2.242C35.1998 1.69494 34.5585 1.23965 33.858 0.893C33.2073 0.575063 32.5173 0.345048 31.806 0.209C31.0007 0.0872774 30.1883 0.0174669 29.374 0H8.645C7.82535 0.0226115 7.00734 0.0860232 6.194 0.19C5.4818 0.332089 4.79171 0.568506 4.142 0.893C3.43803 1.23384 2.79588 1.68977 2.242 2.242C1.69494 2.80023 1.23965 3.44148 0.893 4.142C0.575063 4.79266 0.345048 5.48271 0.209 6.194C0.0872774 6.99935 0.0174669 7.81169 0 8.626V29.355C0.0226115 30.1746 0.0860232 30.9927 0.19 31.806C0.332089 32.5182 0.568506 33.2083 0.893 33.858C1.23384 34.562 1.68977 35.2041 2.242 35.758C2.80023 36.3051 3.44148 36.7604 4.142 37.107C4.79266 37.4249 5.48271 37.6549 6.194 37.791C6.99935 37.9127 7.81169 37.9825 8.626 38H29.355C30.1746 37.9774 30.9927 37.914 31.806 37.81C32.5182 37.6679 33.2083 37.4315 33.858 37.107C34.562 36.7662 35.2041 36.3102 35.758 35.758C36.3051 35.1998 36.7604 34.5585 37.107 33.858C37.4249 33.2073 37.6549 32.5173 37.791 31.806C37.9127 31.0007 37.9825 30.1883 38 29.374V8.645ZM19.437 32.3C17.155 32.2904 14.9127 31.702 12.92 30.59L5.7 32.49L7.6 25.422C6.37387 23.3636 5.71806 21.0158 5.7 18.62C5.70757 15.9276 6.51169 13.2976 8.01108 11.0612C9.51048 8.82493 11.6381 7.08231 14.126 6.05286C16.6139 5.02341 19.3507 4.75317 21.9919 5.27618C24.6331 5.79919 27.0604 7.09206 28.9682 8.99195C30.876 10.8918 32.179 13.3138 32.713 15.9528C33.2469 18.5917 32.9881 21.3297 31.969 23.8218C30.9499 26.314 29.2161 28.4488 26.9861 29.9575C24.756 31.4662 22.1294 32.2812 19.437 32.3ZM19.437 7.353C17.4226 7.37605 15.4504 7.93247 13.721 8.9656C11.9916 9.99873 10.5668 11.4717 9.59176 13.2345C8.61672 14.9973 8.1262 16.987 8.17016 19.001C8.21412 21.015 8.79097 22.9814 9.842 24.7L10.108 25.137L8.968 29.298L13.3 28.12L13.718 28.367C15.4462 29.3849 17.4124 29.9289 19.418 29.944C22.4415 29.944 25.3411 28.7429 27.479 26.605C29.6169 24.4671 30.818 21.5675 30.818 18.544C30.818 15.5205 29.6169 12.6209 27.479 10.483C25.3411 8.34507 22.4415 7.144 19.418 7.144L19.437 7.353ZM26.087 23.541C25.8381 23.9561 25.5049 24.3143 25.1089 24.5925C24.7129 24.8707 24.2629 25.0627 23.788 25.156C23.0786 25.288 22.3475 25.2424 21.66 25.023C21.0129 24.8202 20.3785 24.5791 19.76 24.301C17.4111 23.1224 15.4079 21.3549 13.946 19.171C13.1535 18.1581 12.6717 16.9371 12.559 15.656C12.5477 15.1236 12.6484 14.5948 12.8546 14.1038C13.0608 13.6128 13.3679 13.1707 13.756 12.806C13.8703 12.6764 14.0105 12.5722 14.1676 12.5002C14.3247 12.4282 14.4952 12.39 14.668 12.388H15.2C15.409 12.388 15.694 12.388 15.96 12.977C16.226 13.566 16.929 15.333 17.024 15.504C17.0707 15.5951 17.095 15.6961 17.095 15.7985C17.095 15.9009 17.0707 16.0019 17.024 16.093C16.9411 16.3 16.8257 16.4925 16.682 16.663C16.511 16.872 16.321 17.119 16.169 17.271C16.017 17.423 15.827 17.613 16.017 17.955C16.5348 18.8269 17.1746 19.6202 17.917 20.311C18.7263 21.0261 19.6515 21.5979 20.653 22.002C20.995 22.173 21.204 22.154 21.394 22.002C21.584 21.85 22.249 21.014 22.477 20.672C22.705 20.33 22.933 20.387 23.237 20.501C23.541 20.615 25.232 21.432 25.574 21.603C25.916 21.774 26.125 21.85 26.22 22.002C26.3024 22.4993 26.2566 23.0093 26.087 23.484V23.541Z" fill="#D4D4D4"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_2_211">
+                            <rect width="38" height="38" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </a>
+
+            <a href="#" class="social-icon w-[38px] h-[38px] cursor-pointer transition-colors">
+                <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_2_213)">
+                        <mask id="mask0_2_213" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="38" height="38">
+                            <path d="M0 0H38V38H0V0Z" fill="white"/>
+                        </mask>
+                        <g mask="url(#mask0_2_213)">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M38 19C38 29.4928 29.4928 38 19 38C8.50725 38 0 29.4928 0 19C0 8.50725 8.50725 0 19 0C29.4928 0 38 8.50725 38 19ZM19.6808 14.0268C17.8336 14.7952 14.1402 16.3859 8.60067 18.7989C7.70133 19.1568 7.23003 19.5067 7.18675 19.8487C7.11392 20.4282 7.83908 20.6562 8.82392 20.9649L9.24033 21.0979C10.2109 21.413 11.5156 21.7819 12.1933 21.7962C12.8086 21.8088 13.4958 21.5555 14.2548 21.0362C19.4291 17.5423 22.1002 15.7763 22.268 15.7383C22.3868 15.7114 22.5514 15.6766 22.6623 15.7763C22.7731 15.8745 22.762 16.0613 22.7509 16.112C22.6781 16.4176 19.8376 19.0602 18.3651 20.4282C17.9059 20.8541 17.5813 21.1565 17.5148 21.2262C17.3639 21.3792 17.2151 21.5265 17.0683 21.6679C16.1658 22.5356 15.4913 23.1879 17.1063 24.2519C17.8822 24.7633 18.5028 25.1861 19.1219 25.6073C19.798 26.068 20.4725 26.5272 21.3465 27.1003C21.5682 27.2481 21.7819 27.3959 21.9878 27.5437C22.7747 28.1058 23.4824 28.6092 24.3564 28.5301C24.8631 28.4826 25.3888 28.006 25.6547 26.5826C26.2833 23.2164 27.5215 15.9268 27.8081 12.9216C27.8271 12.6721 27.8165 12.4212 27.7764 12.1743C27.7543 11.9744 27.6569 11.7904 27.5041 11.6597C27.2777 11.4744 26.9262 11.4348 26.7678 11.438C26.0538 11.4507 24.9581 11.8323 19.6808 14.0268Z" fill="#D4D4D4"/>
+                        </g>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_2_213">
+                            <rect width="38" height="38" fill="white"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+            </a>
+        </div>
+
+        <div class="flex relative z-10 gap-10 justify-center items-center max-sm:flex-col max-sm:gap-5">
+            <div class="text-base text-neutral-300">© 2025 Все права защищены</div>
+            <a href="#" class="text-base underline text-neutral-300 hover:text-orange-600 transition-colors">Политика конфиденциальности</a>
+        </div>
+    </footer>
+
+    <!-- Decorative Lines -->
+    <svg width="1920" height="1767" viewBox="0 0 1920 1767" fill="none" xmlns="http://www.w3.org/2000/svg" class="decorative-line-1 absolute top-[5655px] left-[-10px] w-[2093px] h-[1764px] z-[1] pointer-events-none">
+        <path d="M-10 1C212.311 331.845 1118.71 1179.8 1391.07 1070.93C1731.51 934.831 1065.61 903.425 1014.46 1083.01C981.331 1199.35 1223.89 1598.3 2083 1765" stroke="#F06512" stroke-width="3" stroke-dasharray="10 10"/>
+    </svg>
+
+    <svg width="1920" height="1778" viewBox="0 0 1920 1778" fill="none" xmlns="http://www.w3.org/2000/svg" class="decorative-line-2 absolute top-[2903px] left-[-219px] w-[1776px] h-[2140px] transform rotate-[-90deg] z-[1] pointer-events-none">
+        <path d="M-219 1776.5C175.589 1554.19 1113.93 940.285 984.071 667.933C821.753 327.492 784.295 993.392 998.478 1044.54C1137.24 1077.67 1722.18 860.109 1921 0.999906" stroke="#F06512" stroke-width="3" stroke-dasharray="10 10"/>
+    </svg>
+</body>
+</html>
