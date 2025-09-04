@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  /* H1 block (uses loaded Gilroy ExtraBold 800) */
+  .h1-block {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: clamp(40px, 12vw, 148px);
+    line-height: clamp(44px, 12vw, 187px);
+    letter-spacing: 0;
+    text-transform: uppercase;
+    color: theme('colors.accent');
+  }
+
+  /* Subtitle for first block (Actay Regular 400) */
+  .subtitle-1-block {
+    font-family: 'Actay', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(18px, 2.8vw, 40px);
+    line-height: 1.2;
+    letter-spacing: 0;
+    color: theme('colors.subtext');
+  }
+
+  /* Generic subtitle (Gilroy 800 to match available weight) */
+  .subtitle {
+    font-family: 'Gilroy', sans-serif;
+    font-weight: 800;
+    font-style: normal;
+    font-size: clamp(20px, 5vw, 48px);
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: theme('colors.text');
+  }
+
+  /* Badge-like subtitle (Actay Wide Bold 700) */
+  .subtitle-badge {
+    font-family: 'Actay Wide', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: clamp(12px, 2vw, 20px);
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: theme('colors.text');
+  }
+
+  /* Body text (Actay Regular 400) */
+  .body-text {
+    font-family: 'Actay', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.5;
+    letter-spacing: 0;
+    color: theme('colors.text');
+  }
+
+  /* Quiz subtitle (Actay Wide Bold 700) */
+  .subtitle-quiz {
+    font-family: 'Actay Wide', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: clamp(16px, 2.5vw, 24px);
+    line-height: 1.15;
+    letter-spacing: 0;
+    color: theme('colors.text');
+  }
+}

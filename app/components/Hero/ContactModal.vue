@@ -126,7 +126,7 @@
                   <button
                     type="submit"
                     :disabled="isSubmitting"
-                    class="w-full mt-6 sm:mt-8 px-6 py-4 sm:px-10 sm:py-5 bg-orange-500 text-white font-actay text-sm sm:text-base font-normal rounded-full hover:bg-orange-600 disabled:bg-orange-400 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-800 transform hover:scale-105 disabled:transform-none"
+                    class="w-full mt-6 sm:mt-8 px-6 py-4 sm:px-10 sm:py-5 bg-accent text-white font-actay text-sm sm:text-base font-normal rounded-full hover:bg-orange-600 disabled:bg-orange-400 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg transform hover:scale-105 disabled:transform-none"
                   >
                     <span v-if="!isSubmitting">Заказать съемку</span>
                     <span v-else class="flex items-center justify-center">
