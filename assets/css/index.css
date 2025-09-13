@@ -70,3 +70,8 @@
     color: theme('colors.text');
   }
 }
+
+body {
+  background-color: theme('colors.bg');
+  overflow-x: hidden;
+}

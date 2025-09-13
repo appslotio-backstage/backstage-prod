@@ -27,8 +27,8 @@
       <div class="hidden md:flex flex-col items-end">
         <p class="font-actay font-light text-sm lg:text-base text-text">+7(000)000-00-00</p>
         <button
-          @click="$emit('open-modal')"
           class="font-actay font-light text-sm lg:text-base text-accent underline hover:no-underline transition-all cursor-pointer"
+          @click="$emit('open-modal')"
         >
           Заказать звонок
         </button>
@@ -61,9 +61,9 @@
         </a>
 
         <button
-          @click="toggleMenu"
           class="p-1 sm:p-2 hover:scale-110 transition-transform focus:outline-none"
           aria-label="Меню"
+          @click="toggleMenu"
         >
           <svg
             width="30"
@@ -99,8 +99,8 @@
               v-for="item in navItems"
               :key="item.href"
               :href="item.href"
-              @click="isMenuOpen = false"
               class="font-actay font-light text-sm text-white py-3 px-4 rounded-lg hover:bg-[#F06512] transition-all duration-300 flex items-center border border-transparent hover:border-[#F06512]/30"
+              @click="isMenuOpen = false"
             >
               {{ item.label }}
             </a>
@@ -110,13 +110,13 @@
                 +7(000)000-00-00
               </p>
               <button
+                class="font-actay font-light text-sm text-[#F06512] px-4 py-3 rounded-lg hover:bg-[#F06512]/10 transition-all cursor-pointer w-full text-left border border-[#F06512]/30 hover:border-[#F06512]"
                 @click="
                   () => {
                     isMenuOpen = false
                     $emit('open-modal')
                   }
                 "
-                class="font-actay font-light text-sm text-[#F06512] px-4 py-3 rounded-lg hover:bg-[#F06512]/10 transition-all cursor-pointer w-full text-left border border-[#F06512]/30 hover:border-[#F06512]"
               >
                 Заказать звонок
               </button>

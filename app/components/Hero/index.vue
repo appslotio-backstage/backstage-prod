@@ -27,7 +27,7 @@
           Организация съёмок «под ключ»
         </p>
 
-        <UIButton @click="openModal" class="md:mt-[68px] mt-12">Заказать съёмку</UIButton>
+        <UIButton class="md:mt-[68px] mt-12" @click="openModal">Заказать съёмку</UIButton>
       </div>
     </div>
 

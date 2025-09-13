@@ -39,32 +39,10 @@
             <div
               class="relative bg-card rounded-2xl border border-orange-500 p-4 sm:p-6 md:p-8 pt-10 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 overflow-hidden"
             >
-              <div class="absolute inset-0 opacity-50">
-                <img src="/images/rew.png" alt="" class="w-full h-full object-cover" />
-              </div>
-
-              <div class="absolute -left-32 -top-4 opacity-50">
-                <svg
-                  width="350"
-                  height="200"
-                  viewBox="0 0 350 200"
-                  fill="none"
-                  class="transform rotate-90"
-                >
-                  <path
-                    d="M300 -28C200 20 100 150 150 180C220 220 240 160 180 150C140 145 50 170 0 250"
-                    stroke="#F06512"
-                    :stroke-opacity="0.5"
-                    stroke-width="3"
-                    stroke-dasharray="10 10"
-                  />
-                </svg>
-              </div>
-
               <button
-                @click="handleClose"
                 class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-orange-500 transition-colors z-10"
                 aria-label="Закрыть"
+                @click="handleClose"
               >
                 <svg
                   width="24"
@@ -102,11 +80,11 @@
                   Оставьте свои контакты и мы свяжемся с вами для уточнения деталей съемки
                 </p>
 
-                <form @submit.prevent="handleSubmit" class="space-y-4 sm:space-y-5">
+                <form class="space-y-4 sm:space-y-5" @submit.prevent="handleSubmit">
                   <div class="relative">
                     <input
-                      type="text"
                       v-model="formData.name"
+                      type="text"
                       placeholder="Имя"
                       required
                       class="w-full px-4 py-3 sm:px-5 sm:py-5 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
@@ -115,8 +93,8 @@
 
                   <div class="relative">
                     <input
-                      type="tel"
                       v-model="formData.phone"
+                      type="tel"
                       placeholder="Телефон"
                       required
                       class="w-full px-4 py-3 sm:px-5 sm:py-5 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
@@ -196,8 +174,8 @@
             </p>
           </div>
           <button
-            @click="showSuccessNotification = false"
             class="text-green-100 hover:text-white ml-2 flex-shrink-0"
+            @click="showSuccessNotification = false"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path
@@ -242,7 +220,6 @@ async function handleSubmit() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1500))
 
-    // eslint-disable-next-line no-console
     console.log('Form submitted:', { ...formData })
 
     // Reset form
@@ -262,7 +239,6 @@ async function handleSubmit() {
       }, 5000)
     }, 300)
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Error submitting form:', error)
   } finally {
     isSubmitting.value = false
