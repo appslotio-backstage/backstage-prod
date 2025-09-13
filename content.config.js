@@ -1,0 +1,10 @@
+import { defineCollection, defineContentConfig } from '@nuxt/content'
+
+export default defineContentConfig({
+  collections: {
+    globals: defineCollection({
+      type: 'data',
+      source: 'globals.yml',
+    }),
+  },
+})

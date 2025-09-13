@@ -18,8 +18,16 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/motion/nuxt',
     '@nuxt/fonts',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
   ],
-
+  robots: {
+    UserAgent: '*',
+    Sitemap: 'https://aboba.com/sitemap.xml',
+  },
+  site: {
+    url: 'https://aboba.com',
+  },
   fonts: {
     files: [
       // Actay (Regular)

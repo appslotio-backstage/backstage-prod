@@ -1,0 +1,20 @@
+# content/globals.yml
+
+# SEO settings
+siteName: 'Backstage - Организация съемок под ключ'
+titleSeparator: '|'
+defaultMeta:
+  title: 'Backstage - Организация съемок под ключ'
+  description: 'meta desc'
+
+# Content for the main hero block
+hero:
+  title: 'BACKSTAGE'
+  subtitle: 'Организация съёмок «под ключ»'
+  socials:
+    - name: 'Twitter'
+      url: 'https://twitter.com/username'
+      icon: 'mdi:twitter'
+    - name: 'GitHub'
+      url: 'https://github.com/username'
+      icon: 'mdi:github'

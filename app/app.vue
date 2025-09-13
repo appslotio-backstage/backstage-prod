@@ -1,20 +1,20 @@
 <template>
-  <Hero />
-  <!-- content -->
-  <div class="max-w-[1420px] mx-auto mb-[500px]">
-    <Why />
-    <div class="mt-16 md:mt-24">
-      <Slider />
-    </div>
-    <div class="mt-16 md:mt-24">
-      <Products />
-    </div>
-    <div class="mt-16 md:mt-24">
-      <SelectStyle />
-    </div>
-    <Marquee class="mt-8 md:mt-16" />
-    <div class="mt-16 md:mt-24">
-      <Price />
-    </div>
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
+
+<script setup>
+const globals = await useGlobals()
+
+useHead({
+  title: globals.value.meta.defaultMeta.siteName,
+  meta: [
+    { name: 'description', content: globals.value.meta.defaultMeta.description },
+    { property: 'og:title', content: globals.value.meta.defaultMeta.title },
+    { property: 'og:description', content: globals.value.meta.defaultMeta.description },
+    { property: 'og:image', content: globals.value.meta.defaultMeta.ogImage },
+  ],
+  link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+})
+</script>

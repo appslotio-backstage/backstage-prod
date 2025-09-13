@@ -19,13 +19,15 @@
       class="flex-grow relative flex items-center justify-center w-full pt-20 pb-24 md:pb-48 lg:pb-64"
     >
       <div class="container mx-auto px-4 relative z-10 flex flex-col items-center">
-        <h1 class="text-center h1-block max-w-full px-2 animate-fade-in-down">BACKSTAGE</h1>
+        <h1 class="text-center h1-block max-w-full px-2 animate-fade-in-down">
+          {{ globals?.meta?.hero?.title }}
+        </h1>
 
         <p
           class="md:mt-[-20px] text-center subtitle-1-block max-w-full md:max-w-4xl px-4 animate-fade-in-up"
           :style="{ animationDelay: '0.3s' }"
         >
-          Организация съёмок «под ключ»
+          {{ globals?.meta?.hero?.subtitle }}
         </p>
 
         <UIButton class="md:mt-[68px] mt-12" @click="openModal">Заказать съёмку</UIButton>
@@ -37,6 +39,10 @@
 </template>
 
 <script setup>
+const { data: globals } = await useAsyncData('globals', () => {
+  return queryCollection('globals').first()
+})
+
 const isModalOpen = ref(false)
 
 function openModal() {
