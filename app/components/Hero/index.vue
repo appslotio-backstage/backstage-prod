@@ -9,6 +9,7 @@
         quality="85"
         loading="eager"
         preload
+        draggable="false"
       />
     </div>
 
