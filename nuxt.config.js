@@ -23,10 +23,10 @@ export default defineNuxtConfig({
   ],
   robots: {
     UserAgent: '*',
-    Sitemap: 'https://aboba.com/sitemap.xml',
+    Sitemap: 'https://backstage-ruddy.vercel.app/sitemap.xml',
   },
   site: {
-    url: 'https://aboba.com',
+    url: 'https://backstage-ruddy.vercel.app/',
   },
   fonts: {
     files: [
