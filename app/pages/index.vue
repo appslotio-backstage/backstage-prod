@@ -6,7 +6,7 @@
       :enter="{ opacity: 1, y: 0, transition: { duration: 600, easing: 'easeOut' } }"
     />
     <!-- content -->
-    <div class="max-w-[1420px] mx-auto mb-[500px]">
+    <div class="max-w-[1420px] mx-auto mb-[500px] px-8">
       <section
         id="services"
         v-motion
