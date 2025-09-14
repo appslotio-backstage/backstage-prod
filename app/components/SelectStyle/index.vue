@@ -5,9 +5,92 @@
     >
       Выберите свой стиль
     </h2>
+    <!-- Mobile: one-card slider with arrows; no autoplay -->
+    <ClientOnly>
+      <div class="md:hidden">
+        <div
+          ref="viewportRefM"
+          class="relative overflow-x-auto no-scrollbar select-none snap-x snap-mandatory"
+        >
+          <div ref="trackRefM" class="flex w-full">
+            <div
+              v-for="(item, i) in items"
+              :key="`style-m-${i}`"
+              class="snap-center snap-always shrink-0 w-full px-4"
+            >
+              <div
+                class="relative overflow-hidden rounded-[30px] bg-card mx-auto w-full"
+                style="aspect-ratio: 343 / 300; max-width: 460px"
+              >
+                <div
+                  class="absolute inset-0 bg-center bg-cover"
+                  :style="{ backgroundImage: `url(${item.src})` }"
+                />
+                <div class="absolute inset-0 bg-black/25" />
+
+                <div class="absolute left-0 right-0 bottom-0 px-5 py-4">
+                  <h3 class="max-w-[80%] subtitle-badge">{{ item.title }}</h3>
+                  <p
+                    class="flex items-center gap-1 mt-2 font-actay font-normal text-sm text-text leading-tight"
+                  >
+                    {{ item.subtitle }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-full mt-4 flex items-center justify-center gap-10">
+          <button
+            class="rounded-full w-8 h-8 text-text/60 hover:text-text transition-colors flex items-center justify-center"
+            aria-label="Previous slide"
+            @click="prevM"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            class="rounded-full w-8 h-8 text-text/60 hover:text-text transition-colors flex items-center justify-center"
+            aria-label="Next slide"
+            @click="nextM"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 6l6 6-6 6"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </ClientOnly>
+
+    <!-- Desktop/Tablet: original 3-cards grid slider -->
     <div
       ref="viewportRef"
-      class="relative overflow-x-auto no-scrollbar select-none"
+      class="relative overflow-x-auto no-scrollbar select-none hidden md:block"
       @pointerdown="onPointerDown"
       @pointermove="onPointerMove"
       @pointerup="onPointerUp"
@@ -20,11 +103,11 @@
         <div
           v-for="(slide, index) in slides"
           :key="index"
-          class="snap-center shrink-0 w-full px-4 md:px-6 lg:px-8"
+          class="snap-center shrink-0 w-full px-6 lg:px-8"
           :aria-label="`slide-${index + 1}`"
         >
           <div class="mx-auto max-w-[1420px]">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="grid grid-cols-3 gap-5">
               <div
                 v-for="(item, i) in slide"
                 :key="`card-${index}-${i}`"
@@ -51,8 +134,8 @@
         </div>
       </div>
     </div>
-    <!-- Bottom arrows (outside of slider) -->
-    <div class="w-full mt-8 flex items-center justify-center gap-6">
+    <!-- Bottom arrows (outside of slider) - hidden on mobile -->
+    <div class="w-full mt-8 hidden md:flex items-center justify-center gap-6">
       <button
         class="rounded-full w-8 h-8 text-text/60 hover:text-text transition-colors flex items-center justify-center"
         aria-label="Previous slide"
@@ -100,6 +183,9 @@
 </template>
 
 <script setup>
+const viewportRefM = ref(null)
+const trackRefM = ref(null)
+
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
@@ -126,6 +212,60 @@ const slides = computed(() => {
     chunked.push(items.slice(i, i + 3))
   }
   return chunked
+})
+
+// Mobile-only navigation (no autoplay)
+function snapToNearestM() {
+  const viewport = viewportRefM.value
+  if (!viewport) return
+  const slideWidth = viewport.clientWidth
+  const index = Math.max(
+    0,
+    Math.min(Math.round(viewport.scrollLeft / slideWidth), items.length - 1),
+  )
+  const targetLeft = index * slideWidth
+  if (Math.abs(viewport.scrollLeft - targetLeft) > 1) {
+    const prevSnapType = viewport.style.scrollSnapType
+    viewport.style.scrollSnapType = 'none'
+    viewport.scrollTo({ left: targetLeft, behavior: 'auto' })
+    requestAnimationFrame(() => {
+      viewport.style.scrollSnapType = prevSnapType || ''
+    })
+  }
+}
+
+function nextM() {
+  const viewport = viewportRefM.value
+  if (!viewport) return
+  const slideWidth = viewport.clientWidth
+  const idx = Math.round(viewport.scrollLeft / slideWidth)
+  const nextIndex = Math.min(idx + 1, items.length - 1)
+  viewport.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' })
+}
+
+function prevM() {
+  const viewport = viewportRefM.value
+  if (!viewport) return
+  const slideWidth = viewport.clientWidth
+  const idx = Math.round(viewport.scrollLeft / slideWidth)
+  const prevIndex = Math.max(idx - 1, 0)
+  viewport.scrollTo({ left: prevIndex * slideWidth, behavior: 'smooth' })
+}
+
+onMounted(() => {
+  const viewport = viewportRefM.value
+  if (!viewport) return
+  let scrollDebounce
+  const onScroll = () => {
+    clearTimeout(scrollDebounce)
+    scrollDebounce = setTimeout(() => {
+      snapToNearestM()
+    }, 120)
+  }
+  viewport.addEventListener('scroll', onScroll, { passive: true })
+  onBeforeUnmount(() => {
+    viewport.removeEventListener('scroll', onScroll)
+  })
 })
 
 let isDragging = false

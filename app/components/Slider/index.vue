@@ -225,8 +225,8 @@
       </div>
 
       <!-- Mobile CTA -->
-      <div class="w-full mt-5 md:hidden">
-        <UIButton class="w-full">Подробнее</UIButton>
+      <div class="mt-5 md:hidden flex justify-center">
+        <UIButton>Подробнее</UIButton>
       </div>
     </ClientOnly>
   </section>
