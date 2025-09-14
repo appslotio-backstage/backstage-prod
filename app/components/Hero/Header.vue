@@ -18,8 +18,8 @@
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
-          @click.prevent="scrollTo(item.href)"
           class="relative h-[18px] flex items-center justify-center pb-[7px] font-actay font-light text-sm lg:text-base text-text hover:text-white transition-colors after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
+          @click.prevent="scrollTo(item.href)"
         >
           {{ item.label }}
         </a>

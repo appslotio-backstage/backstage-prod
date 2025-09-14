@@ -93,9 +93,11 @@
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
-const visible = 3
+const visible = ref(1)
 const gapPx = 20
-const calcWidth = computed(() => `calc((100% - ${(visible - 1) * gapPx}px) / ${visible})`)
+const calcWidth = computed(
+  () => `calc((100% - ${(visible.value - 1) * gapPx}px) / ${visible.value})`,
+)
 
 const items = [
   {
@@ -213,7 +215,9 @@ function getStep() {
   const track = trackRef.value
   if (!viewport || !track) return 0
   const first = track.children[0]
-  const childWidth = first ? first.getBoundingClientRect().width : viewport.clientWidth / visible
+  const childWidth = first
+    ? first.getBoundingClientRect().width
+    : viewport.clientWidth / visible.value
   const styles = getComputedStyle(track)
   const gap = parseFloat(styles.columnGap || styles.gap || '0') || gapPx
   return childWidth + gap
@@ -240,6 +244,11 @@ onMounted(() => {
   startAutoplay()
   const viewport = viewportRef.value
   if (!viewport) return
+  const apply = () => {
+    visible.value = window.matchMedia('(min-width: 768px)').matches ? 3 : 1
+  }
+  apply()
+  window.addEventListener('resize', apply)
   const onScroll = () => {
     stopAutoplay()
     clearTimeout(scrollDebounce)
@@ -249,7 +258,10 @@ onMounted(() => {
     }, 120)
   }
   viewport.addEventListener('scroll', onScroll)
-  onBeforeUnmount(() => viewport.removeEventListener('scroll', onScroll))
+  onBeforeUnmount(() => {
+    viewport.removeEventListener('scroll', onScroll)
+    window.removeEventListener('resize', apply)
+  })
 })
 
 onBeforeUnmount(() => stopAutoplay())

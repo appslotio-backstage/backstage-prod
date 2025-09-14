@@ -12,53 +12,57 @@
       </p>
     </div>
 
-    <div
-      ref="viewportRef"
-      class="relative overflow-x-auto no-scrollbar select-none pr-[60px] mt-4"
-      @pointerdown="onPointerDown"
-      @pointermove="onPointerMove"
-      @pointerup="onPointerUp"
-      @pointercancel="onPointerUp"
-      @pointerleave="onPointerUp"
-      @mouseenter="pauseAutoplay"
-      @mouseleave="resumeAutoplay"
-    >
-      <div ref="trackRef" class="flex snap-x snap-mandatory w-full">
-        <div
-          v-for="(col, index) in flatColumns"
-          :key="index"
-          class="snap-start shrink-0 mr-5"
-          :style="{ width: `calc(100% / ${visible})` }"
-          :aria-label="`col-${index + 1}`"
-        >
-          <div class="bg-card rounded-[20px] p-4 h-full">
-            <h3 class="mb-4 font-actayWide font-bold text-3xl text-text text-center">
-              {{ col.title }}
-            </h3>
-            <div
-              v-for="(item, ii) in col.items"
-              :key="ii"
-              class="rounded-[30px] border border-[#F0651280] p-6 mb-5 last:mb-0"
-            >
-              <div class="flex items-start justify-between gap-4">
-                <div class="w-full max-w-[80%]">
-                  <p class="subtitle-badge h-10">{{ item.name }}</p>
-                  <div
-                    v-if="item.desc"
-                    class="mt-4 text-[14px] text-subtext leading-tight whitespace-pre-line"
-                  >
-                    {{ item.desc }}
+    <ClientOnly>
+      <div
+        ref="viewportRef"
+        class="relative overflow-x-auto no-scrollbar select-none md:pr-[60px] mt-4 snap-x snap-mandatory"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerUp"
+        @pointerleave="onPointerUp"
+        @mouseenter="pauseAutoplay"
+        @mouseleave="resumeAutoplay"
+      >
+        <div ref="trackRef" class="flex w-full">
+          <div
+            v-for="(col, index) in flatColumns"
+            :key="index"
+            class="snap-start shrink-0 mr-5"
+            :style="{ width: `calc(100% / ${visible})` }"
+            :aria-label="`col-${index + 1}`"
+          >
+            <div class="bg-card rounded-[20px] p-4 h-full">
+              <h3 class="mb-4 font-actayWide font-bold text-3xl text-text text-center">
+                {{ col.title }}
+              </h3>
+              <div
+                v-for="(item, ii) in col.items"
+                :key="ii"
+                class="rounded-[30px] border border-[#F0651280] p-6 mb-5 last:mb-0"
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <div class="w-full max-w-[80%]">
+                    <p class="subtitle-badge h-10">{{ item.name }}</p>
+                    <div
+                      v-if="item.desc"
+                      class="mt-4 text-[14px] text-subtext leading-tight whitespace-pre-line"
+                    >
+                      {{ item.desc }}
+                    </div>
                   </div>
+                  <p
+                    class="font-actayWide font-bold text-xl text-text whitespace-nowrap self-center"
+                  >
+                    {{ item.price }}
+                  </p>
                 </div>
-                <p class="font-actayWide font-bold text-xl text-text whitespace-nowrap self-center">
-                  {{ item.price }}
-                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </ClientOnly>
 
     <!-- arrows under slider -->
     <div class="w-full mt-6 flex items-center justify-center gap-6">
@@ -112,7 +116,7 @@
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
-const visible = 2.5 // сколько колонок видно одновременно
+const visible = ref(1) // мобильный: 1 колонка, на десктопе повысим до 2.5
 
 const slides = ref([
   {
@@ -246,19 +250,28 @@ function snapToNearest() {
 function next() {
   const viewport = viewportRef.value
   if (!viewport) return
-  const step = viewport.clientWidth / visible
+  const step = viewport.clientWidth / visible.value
   viewport.scrollTo({ left: viewport.scrollLeft + step, behavior: 'smooth' })
 }
 
 function prev() {
   const viewport = viewportRef.value
   if (!viewport) return
-  const step = viewport.clientWidth / visible
+  const step = viewport.clientWidth / visible.value
   viewport.scrollTo({ left: viewport.scrollLeft - step, behavior: 'smooth' })
 }
 
 function pauseAutoplay() {}
 function resumeAutoplay() {}
+
+onMounted(() => {
+  const apply = () => {
+    visible.value = window.matchMedia('(min-width: 768px)').matches ? 2.5 : 1
+  }
+  apply()
+  window.addEventListener('resize', apply)
+  onBeforeUnmount(() => window.removeEventListener('resize', apply))
+})
 </script>
 
 <style scoped>

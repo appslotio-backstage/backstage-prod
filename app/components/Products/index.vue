@@ -146,7 +146,7 @@
         </div>
       </div>
     </div>
-    <UIButton class="mx-auto mt-8 !block">Полный печерень услуг</UIButton>
+    <!-- <UIButton class="mx-auto mt-8 !block">Полный печерень услуг</UIButton> -->
   </section>
 </template>
 

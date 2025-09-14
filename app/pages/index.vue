@@ -1,12 +1,8 @@
 <template>
   <div>
-    <Hero
-      v-motion
-      :initial="{ opacity: 0, y: 24 }"
-      :enter="{ opacity: 1, y: 0, transition: { duration: 600, easing: 'easeOut' } }"
-    />
+    <Hero />
     <!-- content -->
-    <div class="max-w-[1420px] mx-auto mb-[500px] px-8">
+    <div class="max-w-[1420px] mx-auto px-8">
       <section
         id="services"
         v-motion
@@ -139,5 +135,6 @@
         <Order :with-heading="false" />
       </section>
     </div>
+    <Footer />
   </div>
 </template>
