@@ -15,7 +15,7 @@
     <ClientOnly>
       <div
         ref="viewportRef"
-        class="relative overflow-x-auto no-scrollbar select-none snap-x snap-mandatory"
+        class="relative overflow-x-auto no-scrollbar select-none snap-x snap-mandatory scroll-smooth touch-pan-x overscroll-x-contain"
         @pointerdown="onPointerDown"
         @pointermove="onPointerMove"
         @pointerup="onPointerUp"
@@ -28,7 +28,7 @@
           <div
             v-for="(slide, index) in effectiveSlides"
             :key="index"
-            class="snap-center snap-always shrink-0 w-full"
+            class="snap-start snap-always shrink-0 w-full"
             :aria-label="`slide-${index + 1}`"
           >
             <div class="w-full">
@@ -309,6 +309,7 @@ function onPointerMove(e) {
   const viewport = viewportRef.value
   if (!viewport) return
   const dx = e.clientX - startX
+  // Use direct set with no smooth to avoid fighting CSS snap
   viewport.scrollLeft = scrollStart - dx
 }
 
@@ -324,7 +325,7 @@ function onPointerUp(e) {
   }
   // Decide slide based on drag distance with low threshold
   const dx = (e.clientX || 0) - startX
-  const threshold = (viewport?.clientWidth || 0) * 0.1
+  const threshold = (viewport?.clientWidth || 0) * 0.06
   isDragging = false
   if (viewport) {
     if (dx <= -threshold) {
@@ -336,12 +337,10 @@ function onPointerUp(e) {
       return
     }
   }
-  snapToNearest()
-  // Resume autoplay after user finishes dragging
-  startAutoplay()
+  // Do not snap immediately here; let momentum finish and onScroll handler snap once
 }
 
-function snapToNearest() {
+function _snapToNearest() {
   const viewport = viewportRef.value
   const track = trackRef.value
   if (!viewport || !track) return
@@ -350,16 +349,7 @@ function snapToNearest() {
     0,
     Math.min(Math.round(viewport.scrollLeft / slideWidth), segmentsCount.value - 1),
   )
-  const targetLeft = index * slideWidth
-  if (Math.abs(viewport.scrollLeft - targetLeft) > 1) {
-    // Temporarily disable CSS scroll-snap to avoid double snapping/jitter
-    const prevSnapType = viewport.style.scrollSnapType
-    viewport.style.scrollSnapType = 'none'
-    viewport.scrollTo({ left: targetLeft, behavior: 'auto' })
-    requestAnimationFrame(() => {
-      viewport.style.scrollSnapType = prevSnapType || ''
-    })
-  }
+  // Let CSS scroll-snap finalize position; just reflect index
   currentIndex.value = index
 }
 
@@ -370,7 +360,7 @@ function next(fromAutoplay = false) {
   const maxIndex = segmentsCount.value - 1
   const currentSlideIndex = Math.round(viewport.scrollLeft / slideWidth)
   const nextIndex = currentSlideIndex >= maxIndex ? 0 : currentSlideIndex + 1
-  viewport.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' })
+  viewport.scrollTo({ left: nextIndex * slideWidth, behavior: 'auto' })
   // keep indicator in sync immediately
   currentIndex.value = nextIndex
   if (!fromAutoplay) {
@@ -387,7 +377,7 @@ function prev() {
   const maxIndex = segmentsCount.value - 1
   const currentSlideIndex = Math.round(viewport.scrollLeft / slideWidth)
   const prevIndex = currentSlideIndex <= 0 ? maxIndex : currentSlideIndex - 1
-  viewport.scrollTo({ left: prevIndex * slideWidth, behavior: 'smooth' })
+  viewport.scrollTo({ left: prevIndex * slideWidth, behavior: 'auto' })
   // Reset autoplay timer on manual navigation
   stopAutoplay()
   startAutoplay()
@@ -440,17 +430,19 @@ onMounted(() => {
   const onScroll = () => {
     // show correct indicator live and pause autoplay while scrolling
     stopAutoplay()
+    // Use requestIdleCallback/rAF to avoid layout thrash while scrolling
+    const schedule = window.requestIdleCallback || window.requestAnimationFrame
     if (!scrollRaf) {
-      scrollRaf = requestAnimationFrame(() => {
+      scrollRaf = schedule(() => {
         updateCurrentIndexFromScroll()
         scrollRaf = null
       })
     }
     clearTimeout(scrollDebounce)
     scrollDebounce = setTimeout(() => {
-      snapToNearest()
+      // Resume autoplay after user/momentum scroll finishes
       startAutoplay()
-    }, 160)
+    }, 260)
   }
   viewport.addEventListener('scroll', onScroll, { passive: true })
   onBeforeUnmount(() => {
