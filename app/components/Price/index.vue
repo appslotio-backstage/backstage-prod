@@ -2,7 +2,7 @@
   <section class="w-full relative">
     <div>
       <h2
-        class="mb-8 font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
+        class="font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
       >
         Стоимость услуг
       </h2>

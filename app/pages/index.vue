@@ -17,6 +17,18 @@
       <div class="mt-16 md:mt-24">
         <Price />
       </div>
+      <div class="mt-16 md:mt-24">
+        <Order />
+      </div>
+      <div class="mt-16 md:mt-24">
+        <Quiz />
+      </div>
+      <div class="mt-16 md:mt-24">
+        <Reviews />
+      </div>
+      <div class="mt-8">
+        <Order :with-heading="false" />
+      </div>
     </div>
   </div>
 </template>
