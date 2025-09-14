@@ -18,6 +18,7 @@
           v-for="item in navItems"
           :key="item.href"
           :href="item.href"
+          @click.prevent="scrollTo(item.href)"
           class="relative h-[18px] flex items-center justify-center pb-[7px] font-actay font-light text-sm lg:text-base text-text hover:text-white transition-colors after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
         >
           {{ item.label }}
@@ -100,7 +101,12 @@
               :key="item.href"
               :href="item.href"
               class="font-actay font-light text-sm text-white py-3 px-4 rounded-lg hover:bg-[#F06512] transition-all duration-300 flex items-center border border-transparent hover:border-[#F06512]/30"
-              @click="isMenuOpen = false"
+              @click.prevent="
+                () => {
+                  isMenuOpen = false
+                  scrollTo(item.href)
+                }
+              "
             >
               {{ item.label }}
             </a>
@@ -149,6 +155,16 @@ function toggleMenu() {
 
 function handleScroll() {
   scrolled.value = window.scrollY > 10
+}
+
+function scrollTo(hash) {
+  if (!hash || hash === '#') return
+  const target = document.querySelector(hash)
+  if (!target) return
+  const headerOffset = 80
+  const rect = target.getBoundingClientRect()
+  const offsetTop = rect.top + window.pageYOffset - headerOffset
+  window.scrollTo({ top: Math.max(offsetTop, 0), behavior: 'smooth' })
 }
 
 onMounted(() => {

@@ -1,34 +1,103 @@
 <template>
   <div>
-    <Hero />
+    <Hero
+      v-motion
+      :initial="{ opacity: 0, y: 24 }"
+      :enter="{ opacity: 1, y: 0, transition: { duration: 600, easing: 'easeOut' } }"
+    />
     <!-- content -->
     <div class="max-w-[1420px] mx-auto mb-[500px]">
-      <Why />
-      <div class="mt-16 md:mt-24">
+      <section
+        id="services"
+        v-motion
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 100, duration: 600, easing: 'easeOut' } }"
+      >
+        <Why />
+      </section>
+
+      <section
+        id="portfolio"
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 150, duration: 600, easing: 'easeOut' } }"
+      >
         <Slider />
-      </div>
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <section
+        id="styles"
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 200, duration: 600, easing: 'easeOut' } }"
+      >
         <Products />
-      </div>
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <section
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 250, duration: 600, easing: 'easeOut' } }"
+      >
         <SelectStyle />
-      </div>
-      <Marquee class="mt-8 md:mt-16" />
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <Marquee
+        v-motion
+        class="mt-8 md:mt-16"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 275, duration: 600, easing: 'easeOut' } }"
+      />
+
+      <section
+        id="pricing"
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 300, duration: 600, easing: 'easeOut' } }"
+      >
         <Price />
-      </div>
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <section
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 350, duration: 600, easing: 'easeOut' } }"
+      >
         <Order />
-      </div>
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <section
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 400, duration: 600, easing: 'easeOut' } }"
+      >
         <Quiz />
-      </div>
-      <div class="mt-16 md:mt-24">
+      </section>
+
+      <section
+        id="reviews"
+        v-motion
+        class="mt-16 md:mt-24"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 450, duration: 600, easing: 'easeOut' } }"
+      >
         <Reviews />
-      </div>
-      <div class="mt-8">
+      </section>
+
+      <section
+        v-motion
+        class="mt-8"
+        :initial="{ opacity: 0, y: 24 }"
+        :enter="{ opacity: 1, y: 0, transition: { delay: 500, duration: 600, easing: 'easeOut' } }"
+      >
         <Order :with-heading="false" />
-      </div>
+      </section>
     </div>
   </div>
 </template>
