@@ -11,7 +11,11 @@
         id="services"
         v-motion
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 100, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 100, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Why />
       </section>
@@ -21,7 +25,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 150, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 150, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Slider />
       </section>
@@ -31,7 +39,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 200, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 200, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Products />
       </section>
@@ -40,7 +52,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 250, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 250, duration: 600, easing: 'easeOut' },
+        }"
       >
         <SelectStyle />
       </section>
@@ -49,7 +65,11 @@
         v-motion
         class="mt-8 md:mt-16"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 275, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 275, duration: 600, easing: 'easeOut' },
+        }"
       />
 
       <section
@@ -57,7 +77,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 300, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 300, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Price />
       </section>
@@ -66,7 +90,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 350, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 350, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Order />
       </section>
@@ -75,7 +103,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 400, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 400, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Quiz />
       </section>
@@ -85,7 +117,11 @@
         v-motion
         class="mt-16 md:mt-24"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 450, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 450, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Reviews />
       </section>
@@ -94,7 +130,11 @@
         v-motion
         class="mt-8"
         :initial="{ opacity: 0, y: 24 }"
-        :enter="{ opacity: 1, y: 0, transition: { delay: 500, duration: 600, easing: 'easeOut' } }"
+        :visible="{
+          opacity: 1,
+          y: 0,
+          transition: { delay: 500, duration: 600, easing: 'easeOut' },
+        }"
       >
         <Order :with-heading="false" />
       </section>
