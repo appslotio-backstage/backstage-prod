@@ -1,5 +1,4 @@
-test: test
-
+test: /images/slider/1/3.png
 items:
   - src: images/style/1.png
     alt: Love story
