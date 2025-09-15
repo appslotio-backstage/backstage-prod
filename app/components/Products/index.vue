@@ -3,7 +3,7 @@
     <h2
       class="mb-8 font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
     >
-      Мы можем
+      {{ productsData?.meta?.body?.title || 'Мы можем' }}
     </h2>
     <!-- Mobile slider -->
     <ClientOnly>
@@ -11,7 +11,7 @@
         <div ref="viewportRef" class="relative overflow-x-auto select-none snap-x snap-mandatory">
           <div ref="trackRef" class="flex w-full">
             <div
-              v-for="(item, i) in items"
+              v-for="(item, i) in displayedItems"
               :key="`card-m-${i}`"
               class="snap-center snap-always shrink-0 w-full"
             >
@@ -102,17 +102,12 @@
     </ClientOnly>
 
     <div class="mx-auto hidden md:block">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-5">
+      <div class="flex flex-wrap justify-center gap-5">
         <div
-          v-for="(item, i) in items"
+          v-for="(item, i) in displayedItems"
           :key="`card-${i}`"
-          class="relative overflow-hidden rounded-[30px] bg-card mx-auto w-full"
-          :class="[
-            i < 3 ? 'lg:col-span-4' : '',
-            i === 3 ? 'lg:col-span-4 lg:col-start-3' : '',
-            i === 4 ? 'lg:col-span-4 lg:col-start-7' : '',
-          ]"
-          style="aspect-ratio: 460 / 365; max-width: 460px"
+          class="relative overflow-hidden rounded-[30px] bg-card w-full md:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)] max-w-[460px]"
+          style="aspect-ratio: 460 / 365"
         >
           <div
             class="absolute inset-0 bg-center bg-cover"
@@ -146,7 +141,9 @@
         </div>
       </div>
     </div>
-    <!-- <UIButton class="mx-auto mt-8 !block">Полный печерень услуг</UIButton> -->
+    <UIButton v-if="items.length > 5" class="mx-auto mt-8 !block" @click="toggleShowAll">
+      {{ showAll ? 'Скрыть' : 'Показать ещё' }}
+    </UIButton>
   </section>
 </template>
 
@@ -154,13 +151,22 @@
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
-const items = [
-  { src: 'images/products/1.png', title: 'Провести индивидуальную или групповую фотосъемку' },
-  { src: 'images/products/2.png', title: 'Подобрать идеальный образ для фотосессий' },
-  { src: 'images/products/3.png', title: 'Подобрать локацию для съемок' },
-  { src: 'images/products/4.png', title: 'Организовать видеосъемку с возможностью создания Reels' },
-  { src: 'images/products/5.png', title: 'Профессионально обработать ваши фото и видео' },
-]
+const productsData = (await useProducts())?.value?.meta || {}
+
+const items = computed(() => {
+  const keys = Array.from({ length: 11 }, (_, i) => `item${i + 1}`)
+  return keys
+    .map((k) => productsData?.[k])
+    .filter((v) => v && typeof v === 'object')
+    .map((it) => ({ src: it?.src || '', title: it?.title || '' }))
+    .filter((it) => it.src || it.title)
+})
+
+const showAll = ref(false)
+const displayedItems = computed(() => (showAll.value ? items.value : items.value.slice(0, 5)))
+function toggleShowAll() {
+  showAll.value = !showAll.value
+}
 
 const currentIndex = ref(0)
 
@@ -170,7 +176,7 @@ function snapToNearest() {
   const slideWidth = viewport.clientWidth
   const index = Math.max(
     0,
-    Math.min(Math.round(viewport.scrollLeft / slideWidth), items.length - 1),
+    Math.min(Math.round(viewport.scrollLeft / slideWidth), (displayedItems.value?.length || 0) - 1),
   )
   const targetLeft = index * slideWidth
   if (Math.abs(viewport.scrollLeft - targetLeft) > 1) {
@@ -189,7 +195,7 @@ function next() {
   if (!viewport) return
   const slideWidth = viewport.clientWidth
   const idx = Math.round(viewport.scrollLeft / slideWidth)
-  const nextIndex = Math.min(idx + 1, items.length - 1)
+  const nextIndex = Math.min(idx + 1, (displayedItems.value?.length || 0) - 1)
   viewport.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' })
   currentIndex.value = nextIndex
 }
