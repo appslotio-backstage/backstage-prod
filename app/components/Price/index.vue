@@ -4,11 +4,13 @@
       <h2
         class="font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
       >
-        Стоимость услуг
+        {{ pricing?.title || 'Стоимость услуг' }}
       </h2>
-      <p class="body-text mx-auto mt-3 text-center">
-        В стоимость входит организация вашей съемки «под ключ» <br />
-        от выбора стиля до получения готовых фото и видео
+      <p class="body-text mx-auto mt-3 text-center whitespace-pre-line">
+        {{
+          pricing?.subtitle ||
+          'В стоимость входит организация вашей съемки «под ключ»\nот выбора стиля до получения готовых фото и видео'
+        }}
       </p>
     </div>
 
@@ -113,84 +115,15 @@
 </template>
 
 <script setup>
+const pricingData = await usePricing()
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
 const visible = ref(1) // мобильный: 1 колонка, на десктопе повысим до 2.5
 
-const slides = ref([
-  {
-    columns: [
-      {
-        title: 'Фото',
-        items: [
-          {
-            name: 'Индивидуальная фотосессия',
-            desc: '1 час съёмки\n20 обработанных фото',
-            price: 'ОТ 5000 ₽',
-          },
-          {
-            name: 'Семейная фотосессия',
-            desc: '2 часа съёмки\n40 обработанных фото',
-            price: 'ОТ 5000 ₽',
-          },
-          { name: 'Услуга 3', desc: 'Описание\nОписание', price: 'ОТ 6000 ₽' },
-        ],
-      },
-      {
-        title: 'Видео',
-        items: [
-          {
-            name: 'Индивидуальная видеосъемка',
-            desc: '1 час съёмки\n20 обработанных видео',
-            price: 'ОТ XXXX ₽',
-          },
-          {
-            name: 'Семейная съёмка',
-            desc: '2 часа съёмки\n40 обработанных видео',
-            price: 'ОТ XXXX ₽',
-          },
-          { name: 'Услуга 3', desc: 'Описание\nОписание', price: 'ОТ XXXX ₽' },
-        ],
-      },
-      {
-        title: 'Доп. услуги',
-        items: [
-          { name: 'Визажист', desc: 'Описание\nОписание', price: 'ОТ XXXX ₽' },
-          { name: 'Визажист', desc: 'Описание\nОписание', price: 'ОТ XXXX ₽' },
-          { name: 'Визажист', desc: 'Описание\nОписание', price: 'ОТ XXXX ₽' },
-        ],
-      },
-    ],
-  },
-  {
-    columns: [
-      {
-        title: 'Фото',
-        items: [
-          { name: 'Съёмка мероприятия', desc: '3 часа\n50+ фото', price: 'ОТ 9000 ₽' },
-          { name: 'Контент-день', desc: '3 локации\n30 фото', price: 'ОТ 7000 ₽' },
-        ],
-      },
-      {
-        title: 'Видео',
-        items: [
-          { name: 'Рилс/Shorts', desc: 'до 60 сек\nмонтаж', price: 'ОТ 4000 ₽' },
-          { name: 'Рекламный ролик', desc: 'концепт\nсъёмка\nмонтаж', price: 'ОТ XXXX ₽' },
-        ],
-      },
-      {
-        title: 'Доп. услуги',
-        items: [
-          { name: 'Ретушь доп. фото', desc: '1 фото', price: 'ОТ 200 ₽' },
-          { name: 'МUAH', desc: 'По запросу', price: 'ОТ XXXX ₽' },
-        ],
-      },
-    ],
-  },
-])
+const columns = computed(() => pricingData?.value?.meta.columns || [])
 
-const flatColumns = computed(() => slides.value.flatMap((s) => s.columns))
+const flatColumns = computed(() => columns.value)
 
 let isDragging = false
 let startX = 0

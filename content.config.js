@@ -6,5 +6,9 @@ export default defineContentConfig({
       type: 'data',
       source: 'globals.yml',
     }),
+    pricing: defineCollection({
+      type: 'data',
+      source: 'pricing.yml',
+    }),
   },
 })
