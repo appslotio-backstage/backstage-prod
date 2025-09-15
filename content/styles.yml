@@ -1,5 +1,5 @@
 item1:
-  src: /images/style/1.png
+  src: /images/style/2.png
   alt: Love story
   title: Love story
   subtitle: Романтические кадры для пары
@@ -34,17 +34,17 @@ item7:
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
 item8:
-  src:
-  alt:
-  title:
-  subtitle:
+  src: ''
+  alt: ''
+  title: ''
+  subtitle: ''
 item9:
-  src:
-  alt:
-  title:
-  subtitle:
+  src: ''
+  alt: ''
+  title: ''
+  subtitle: ''
 item10:
-  src:
-  alt:
-  title:
-  subtitle:
+  src: ''
+  alt: ''
+  title: ''
+  subtitle: ''
