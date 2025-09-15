@@ -121,7 +121,35 @@ const trackRef = ref(null)
 
 const visible = ref(1) // мобильный: 1 колонка, на десктопе повысим до 2.5
 
-const columns = computed(() => pricingData?.value?.meta.columns || [])
+const columns = computed(() => {
+  const dataRoot = pricingData?.value?.meta || pricingData?.value || {}
+  const arrayColumns = Array.isArray(dataRoot?.columns) ? dataRoot.columns : []
+
+  const colKeys = Array.from({ length: 10 }, (_, i) => `col${i + 1}`)
+  const staticColumns = colKeys
+    .map((key) => dataRoot?.[key])
+    .filter((c) => c && typeof c === 'object')
+    .map((col) => {
+      const itemKeys = ['item1', 'item2', 'item3']
+      const items = itemKeys
+        .map((ik) => col?.[ik])
+        .filter((it) => it && typeof it === 'object')
+        .map((it) => ({
+          name: it?.name || '',
+          desc: it?.desc || '',
+          price: it?.price || '',
+        }))
+        .filter((it) => it.name || it.desc || it.price)
+
+      const title = col?.title || ''
+      if (!title && items.length === 0) return null
+      return { title, items }
+    })
+    .filter(Boolean)
+
+  const source = arrayColumns.length ? arrayColumns : staticColumns
+  return source
+})
 
 const flatColumns = computed(() => columns.value)
 

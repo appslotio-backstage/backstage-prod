@@ -3,94 +3,179 @@ subtitle: |
   В стоимость входит организация вашей съемки «под ключ»
   от выбора стиля до получения готовых фото и видео
 
-# Flat columns list to align with current UI and logic
-columns:
-  - title: Фото
-    items:
-      - name: Индивидуальная фотосессия
-        desc: |
-          1 час съёмки
-          20 обработанных фото
-        price: ОТ 5000 ₽
-      - name: Семейная фотосессия
-        desc: |
-          2 часа съёмки
-          40 обработанных фото
-        price: ОТ 5000 ₽
-      - name: Услуга 3
-        desc: |
-          Описание
-          Описание
-        price: ОТ 6000 ₽
+col1:
+  title: Фото
+  item1:
+    name: Индивидуальная фотосессия
+    desc: |
+      1 час съёмки
+      20 обработанных фото
+    price: ОТ 5000 ₽
+  item2:
+    name: Семейная фотосессия
+    desc: |
+      2 часа съёмки
+      40 обработанных фото
+    price: ОТ 5000 ₽
+  item3:
+    name: Услуга 3
+    desc: |
+      Описание
+      Описание
+    price: ОТ 6000 ₽
 
-  - title: Видео
-    items:
-      - name: Индивидуальная видеосъемка
-        desc: |
-          1 час съёмки
-          20 обработанных видео
-        price: ОТ XXXX ₽
-      - name: Семейная съёмка
-        desc: |
-          2 часа съёмки
-          40 обработанных видео
-        price: ОТ XXXX ₽
-      - name: Услуга 3
-        desc: |
-          Описание
-          Описание
-        price: ОТ XXXX ₽
+col2:
+  title: Видео
+  item1:
+    name: Индивидуальная видеосъемка
+    desc: |
+      1 час съёмки
+      20 обработанных видео
+    price: ОТ XXXX ₽
+  item2:
+    name: Семейная съёмка
+    desc: |
+      2 часа съёмки
+      40 обработанных видео
+    price: ОТ XXXX ₽
+  item3:
+    name: Услуга 3
+    desc: |
+      Описание
+      Описание
+    price: ОТ XXXX ₽
 
-  - title: Доп. услуги
-    items:
-      - name: Визажист
-        desc: |
-          Описание
-          Описание
-        price: ОТ XXXX ₽
-      - name: Визажист
-        desc: |
-          Описание
-          Описание
-        price: ОТ XXXX ₽
-      - name: Визажист
-        desc: |
-          Описание
-          Описание
-        price: ОТ XXXX ₽
+col3:
+  title: Доп. услуги
+  item1:
+    name: Визажист
+    desc: |
+      Описание
+      Описание
+    price: ОТ XXXX ₽
+  item2:
+    name: Визажист
+    desc: |
+      Описание
+      Описание
+    price: ОТ XXXX ₽
+  item3:
+    name: Визажист
+    desc: |
+      Описание
+      Описание
+    price: ОТ XXXX ₽
 
-  - title: Фото
-    items:
-      - name: Съёмка мероприятия
-        desc: |
-          3 часа
-          50+ фото
-        price: ОТ 9000 ₽
-      - name: Контент-день
-        desc: |
-          3 локации
-          30 фото
-        price: ОТ 7000 ₽
+col4:
+  title: Фото
+  item1:
+    name: Съёмка мероприятия
+    desc: |
+      3 часа
+      50+ фото
+    price: ОТ 9000 ₽
+  item2:
+    name: Контент-день
+    desc: |
+      3 локации
+      30 фото
+    price: ОТ 7000 ₽
+  item3:
+    name:
+    desc:
+    price:
 
-  - title: Видео
-    items:
-      - name: Рилс/Shorts
-        desc: |
-          до 60 сек
-          монтаж
-        price: ОТ 4000 ₽
-      - name: Рекламный ролик
-        desc: |
-          концепт
-          съёмка
-          монтаж
-        price: ОТ XXXX ₽
+col5:
+  title: Видео
+  item1:
+    name: Рилс/Shorts
+    desc: |
+      до 60 сек
+      монтаж
+    price: ОТ 4000 ₽
+  item2:
+    name: Рекламный ролик
+    desc: |
+      концепт
+      съёмка
+      монтаж
+    price: ОТ XXXX ₽
+  item3:
+    name:
+    desc:
+    price:
 
-  - title: Доп. услуги
-    items:
-      - name: Ретушь доп. фото
-        desc: 1 фото
-        price: ОТ 200 ₽
-      - name: МUAH
-        desc: По запросу
-        price: ОТ XXXX ₽
+col6:
+  title: Доп. услуги
+  item1:
+    name: Ретушь доп. фото
+    desc: 1 фото
+    price: ОТ 200 ₽
+  item2:
+    name: МUAH
+    desc: По запросу
+    price: ОТ XXXX ₽
+  item3:
+    name:
+    desc:
+    price:
+
+col7:
+  title:
+  item1:
+    name:
+    desc:
+    price:
+  item2:
+    name:
+    desc:
+    price:
+  item3:
+    name:
+    desc:
+    price:
+
+col8:
+  title:
+  item1:
+    name:
+    desc:
+    price:
+  item2:
+    name:
+    desc:
+    price:
+  item3:
+    name:
+    desc:
+    price:
+
+col9:
+  title:
+  item1:
+    name:
+    desc:
+    price:
+  item2:
+    name:
+    desc:
+    price:
+  item3:
+    name:
+    desc:
+    price:
+
+col10:
+  title:
+  item1:
+    name:
+    desc:
+    price:
+  item2:
+    name:
+    desc:
+    price:
+  item3:
+    name:
+    desc:
+    price:
