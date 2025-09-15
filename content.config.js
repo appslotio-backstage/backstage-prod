@@ -18,5 +18,9 @@ export default defineContentConfig({
       type: 'data',
       source: 'products.yml',
     }),
+    portfolio: defineCollection({
+      type: 'data',
+      source: 'portfolio.yml',
+    }),
   },
 })

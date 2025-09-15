@@ -4,12 +4,12 @@
       <h2
         class="font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
       >
-        Портфолио
+        {{ portfolio?.title || 'Портфолио' }}
       </h2>
       <p
         class="mt-3 !text-accent text-center mb-8 font-actay font-normal text-2xl leading-none tracking-normal"
       >
-        Love story
+        {{ portfolio?.subtitle || '' }}
       </p>
     </div>
     <ClientOnly>
@@ -55,7 +55,7 @@
                       <div class="relative bg-card overflow-hidden h-full rounded-[30px]">
                         <img
                           :src="slide.topLeft240x231"
-                          alt=""
+                          :alt="slide.altTopLeft240x231 || ''"
                           class="absolute inset-0 w-full h-full object-cover"
                           draggable="false"
                         />
@@ -63,7 +63,7 @@
                       <div class="relative bg-card overflow-hidden h-full rounded-[30px]">
                         <img
                           :src="slide.topRight440x231"
-                          alt=""
+                          :alt="slide.altTopRight440x231 || ''"
                           class="absolute inset-0 w-full h-full object-cover"
                           draggable="false"
                         />
@@ -77,7 +77,7 @@
                       <div class="relative bg-card overflow-hidden h-full rounded-[30px]">
                         <img
                           :src="slide.bottomLeft403x231"
-                          alt=""
+                          :alt="slide.altBottomLeft403x231 || ''"
                           class="absolute inset-0 w-full h-full object-cover"
                           draggable="false"
                         />
@@ -85,7 +85,7 @@
                       <div class="relative bg-card overflow-hidden h-full rounded-[30px]">
                         <img
                           :src="slide.bottomRight277x231"
-                          alt=""
+                          :alt="slide.altBottomRight277x231 || ''"
                           class="absolute inset-0 w-full h-full object-cover"
                           draggable="false"
                         />
@@ -99,7 +99,7 @@
                   >
                     <img
                       :src="slide.rightTall460x482"
-                      alt=""
+                      :alt="slide.altRightTall460x482 || ''"
                       class="absolute inset-0 w-full h-full object-cover"
                       draggable="false"
                     />
@@ -109,7 +109,7 @@
                   >
                     <img
                       :src="slide.rightTall220x482"
-                      alt=""
+                      :alt="slide.altRightTall220x482 || ''"
                       class="absolute inset-0 w-full h-full object-cover"
                       draggable="false"
                     />
@@ -126,7 +126,7 @@
                   >
                     <img
                       :src="slide.topLeft240x231"
-                      alt=""
+                      :alt="slide.altTopLeft240x231 || ''"
                       class="absolute inset-0 w-full h-full object-cover"
                       draggable="false"
                     />
@@ -137,7 +137,7 @@
                   >
                     <img
                       :src="slide.topRight440x231"
-                      alt=""
+                      :alt="slide.altTopRight440x231 || ''"
                       class="absolute inset-0 w-full h-full object-cover"
                       draggable="false"
                     />
@@ -148,7 +148,7 @@
                   >
                     <img
                       :src="slide.bottomLeft403x231"
-                      alt=""
+                      :alt="slide.altBottomLeft403x231 || ''"
                       class="absolute inset-0 w-full h-full object-cover"
                       draggable="false"
                     />
@@ -236,50 +236,75 @@
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
-const slides = ref([
-  {
-    topLeft240x231: 'images/slider/1/1.png',
-    topRight440x231: 'images/slider/1/2.png',
-    bottomLeft403x231: 'images/slider/1/3.png',
-    bottomRight277x231: 'images/slider/1/4.png',
-    rightTall460x482: 'images/slider/1/5.png',
-    rightTall220x482: 'images/slider/1/6.png',
-  },
-  {
-    topLeft240x231: 'images/slider/1/1.png',
-    topRight440x231: 'images/slider/1/2.png',
-    bottomLeft403x231: 'images/slider/1/3.png',
-    bottomRight277x231: 'images/slider/1/4.png',
-    rightTall460x482: 'images/slider/1/5.png',
-    rightTall220x482: 'images/slider/1/6.png',
-  },
-])
+const portfolioData = await usePortfolio()
+
+function pick(arr, idx) {
+  return arr[idx] || { src: '', alt: '' }
+}
+
+const slides = computed(() => {
+  const root = portfolioData?.value?.meta || portfolioData?.value || {}
+  const items = Array.from({ length: 30 }, (_, i) => root[`item${i + 1}`])
+    .filter((v) => v && typeof v === 'object')
+    .map((it) => ({ src: it?.src || '', alt: it?.alt || '' }))
+    .filter((it) => it.src)
+
+  // desktop slide requires 6 images; mobile slide uses 3 (TL, TR, BL)
+  const desktopSlides = []
+  for (let i = 0; i + 5 < items.length; i += 6) {
+    const [a, b, c, d, e, f] = [
+      pick(items, i),
+      pick(items, i + 1),
+      pick(items, i + 2),
+      pick(items, i + 3),
+      pick(items, i + 4),
+      pick(items, i + 5),
+    ]
+    // if we don't have full 6, skip
+    if (!(a.src && b.src && c.src && d.src && e.src && f.src)) continue
+    desktopSlides.push({
+      topLeft240x231: a.src,
+      altTopLeft240x231: a.alt,
+      topRight440x231: b.src,
+      altTopRight440x231: b.alt,
+      bottomLeft403x231: c.src,
+      altBottomLeft403x231: c.alt,
+      bottomRight277x231: d.src,
+      altBottomRight277x231: d.alt,
+      rightTall460x482: e.src,
+      altRightTall460x482: e.alt,
+      rightTall220x482: f.src,
+      altRightTall220x482: f.alt,
+    })
+  }
+  return desktopSlides
+})
 
 // Responsive slides: desktop uses original slides; mobile splits each into two
 const isMobile = ref(false)
 const effectiveSlides = computed(() => {
   if (!isMobile.value) return slides.value
-  // Split each desktop slide into two mobile slides (first: TL + TR + BL; second: BR + RightTall460 + RightTall220)
+  // Mobile slide needs 3 images per slide: TL, TR, BL from desktop mapping
+  const imgs = slides.value.flatMap((s) => [
+    { src: s.topLeft240x231, alt: s.altTopLeft240x231 },
+    { src: s.topRight440x231, alt: s.altTopRight440x231 },
+    { src: s.bottomLeft403x231, alt: s.altBottomLeft403x231 },
+    { src: s.bottomRight277x231, alt: s.altBottomRight277x231 },
+    { src: s.rightTall460x482, alt: s.altRightTall460x482 },
+    { src: s.rightTall220x482, alt: s.altRightTall220x482 },
+  ])
   const result = []
-  for (const s of slides.value) {
+  for (let i = 0; i + 2 < imgs.length; i += 3) {
     result.push({
-      topLeft240x231: s.topLeft240x231,
-      topRight440x231: s.topRight440x231,
-      bottomLeft403x231: s.bottomLeft403x231,
-      // placeholders to keep object shape for template
-      bottomRight277x231: s.bottomRight277x231,
-      rightTall460x482: s.rightTall460x482,
-      rightTall220x482: s.rightTall220x482,
-      __mobileHalf: 1,
-    })
-    result.push({
-      topLeft240x231: s.bottomRight277x231,
-      topRight440x231: s.rightTall460x482,
-      bottomLeft403x231: s.rightTall220x482,
-      bottomRight277x231: s.bottomRight277x231,
-      rightTall460x482: s.rightTall460x482,
-      rightTall220x482: s.rightTall220x482,
-      __mobileHalf: 2,
+      topLeft240x231: imgs[i].src,
+      altTopLeft240x231: imgs[i].alt,
+      topRight440x231: imgs[i + 1].src,
+      altTopRight440x231: imgs[i + 1].alt,
+      bottomLeft403x231: imgs[i + 2].src,
+      altBottomLeft403x231: imgs[i + 2].alt,
+      bottomRight277x231: '',
+      rightTall460x482: '',
+      rightTall220x482: '',
     })
   }
   return result

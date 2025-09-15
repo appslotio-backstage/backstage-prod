@@ -1,0 +1,33 @@
+title: Портфолио
+subtitle: Love story
+# 30 статичных блоков: image + alt
+item1: { src: images/slider/1.png, alt: Фото 1 }
+item2: { src: images/slider/2.png, alt: Фото 2 }
+item3: { src: images/slider/3.png, alt: Фото 3 }
+item4: { src: images/slider/4.png, alt: Фото 4 }
+item5: { src: images/slider/5.png, alt: Фото 5 }
+item6: { src: images/slider/6.png, alt: Фото 6 }
+item7: { src: images/slider/1.png, alt: Фото 1 }
+item8: { src: images/slider/1.png, alt: Фото 1 }
+item9: { src: images/slider/1.png, alt: Фото 1 }
+item10: { src: images/slider/1.png, alt: Фото 1 }
+item11: { src: images/slider/1.png, alt: Фото 1 }
+item12: { src: images/slider/1.png, alt: Фото 1 }
+item13: { src: '', alt: '' }
+item14: { src: '', alt: '' }
+item15: { src: '', alt: '' }
+item16: { src: '', alt: '' }
+item17: { src: '', alt: '' }
+item18: { src: '', alt: '' }
+item19: { src: '', alt: '' }
+item20: { src: '', alt: '' }
+item21: { src: '', alt: '' }
+item22: { src: '', alt: '' }
+item23: { src: '', alt: '' }
+item24: { src: '', alt: '' }
+item25: { src: '', alt: '' }
+item26: { src: '', alt: '' }
+item27: { src: '', alt: '' }
+item28: { src: '', alt: '' }
+item29: { src: '', alt: '' }
+item30: { src: '', alt: '' }
