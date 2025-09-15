@@ -1,35 +1,35 @@
 item1:
-  src: images/style/1.png
+  src: /images/style/1.png
   alt: Love story
   title: Love story
   subtitle: Романтические кадры для пары
 item2:
-  src: images/style/2.png
+  src: /images/style/2.png
   alt: Индивидуальная съемка
   title: Индивидуальная съемка
   subtitle: Ваша уникальность в каждом кадре
 item3:
-  src: images/style/3.png
+  src: /images/style/3.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
 item4:
-  src: images/style/4.png
+  src: /images/style/4.png
   alt: Love story
   title: Love story
   subtitle: Романтические кадры для пары
 item5:
-  src: images/style/5.png
+  src: /images/style/5.png
   alt: Индивидуальная съемка
   title: Индивидуальная съемка
   subtitle: Ваша уникальность в каждом кадре
 item6:
-  src: images/style/6.png
+  src: /images/style/6.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
 item7:
-  src: images/style/1.png
+  src: /images/style/1.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
