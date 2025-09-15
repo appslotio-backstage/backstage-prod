@@ -1,27 +1,50 @@
-test: test
-
-items:
-  - src: images/style/1.png
-    alt: Love story
-    title: Love story
-    subtitle: Романтические кадры для пары
-  - src: images/style/2.png
-    alt: Индивидуальная съемка
-    title: Индивидуальная съемка
-    subtitle: Ваша уникальность в каждом кадре
-  - src: images/style/3.png
-    alt: Fashion-съёмка
-    title: Fashion-съёмка
-    subtitle: Стильные образы и тренды
-  - src: images/style/1.png
-    alt: Love story
-    title: Love story
-    subtitle: Романтические кадры для пары
-  - src: images/style/2.png
-    alt: Индивидуальная съемка
-    title: Индивидуальная съемка
-    subtitle: Ваша уникальность в каждом кадре
-  - src: images/style/3.png
-    alt: Fashion-съёмка
-    title: Fashion-съёмка
-    subtitle: Стильные образы и тренды
+item1:
+  src: images/style/1.png
+  alt: Love story
+  title: Love story
+  subtitle: Романтические кадры для пары
+item2:
+  src: images/style/2.png
+  alt: Индивидуальная съемка
+  title: Индивидуальная съемка
+  subtitle: Ваша уникальность в каждом кадре
+item3:
+  src: images/style/3.png
+  alt: Fashion-съёмка
+  title: Fashion-съёмка
+  subtitle: Стильные образы и тренды
+item4:
+  src: images/style/1.png
+  alt: Love story
+  title: Love story
+  subtitle: Романтические кадры для пары
+item5:
+  src: images/style/2.png
+  alt: Индивидуальная съемка
+  title: Индивидуальная съемка
+  subtitle: Ваша уникальность в каждом кадре
+item6:
+  src: images/style/3.png
+  alt: Fashion-съёмка
+  title: Fashion-съёмка
+  subtitle: Стильные образы и тренды
+item7:
+  src: images/style/3.png
+  alt: Fashion-съёмка
+  title: Fashion-съёмка
+  subtitle: Стильные образы и тренды
+item8:
+  src:
+  alt:
+  title:
+  subtitle:
+item9:
+  src:
+  alt:
+  title:
+  subtitle:
+item10:
+  src:
+  alt:
+  title:
+  subtitle:

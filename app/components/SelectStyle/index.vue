@@ -192,7 +192,25 @@ const viewportRef = ref(null)
 const trackRef = ref(null)
 
 const stylesData = await useStyles()
-const items = computed(() => stylesData?.value?.meta.items || [])
+const items = computed(() => {
+  const dataRoot = stylesData?.value?.meta || stylesData?.value || {}
+  const arrayItems = Array.isArray(dataRoot?.items) ? dataRoot.items : []
+  const blockKeys = Array.from({ length: 10 }, (_, i) => `item${i + 1}`)
+  const blockItems = blockKeys
+    .map((key) => dataRoot?.[key])
+    .filter((v) => v && typeof v === 'object')
+
+  const source = arrayItems.length ? arrayItems : blockItems
+
+  return source
+    .map((it) => ({
+      src: it?.src || '',
+      alt: it?.alt || it?.title || '',
+      title: it?.title || '',
+      subtitle: it?.subtitle || '',
+    }))
+    .filter((it) => it.src || it.title || it.subtitle || it.alt)
+})
 
 const slides = computed(() => {
   const chunked = []
