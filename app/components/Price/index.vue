@@ -4,11 +4,11 @@
       <h2
         class="font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
       >
-        {{ pricing?.title || 'Стоимость услуг' }}
+        {{ pricingData.meta.body.title || 'Стоимость услуг' }}
       </h2>
       <p class="body-text mx-auto mt-3 text-center whitespace-pre-line">
         {{
-          pricing?.subtitle ||
+          pricingData.meta.body.subtitle ||
           'В стоимость входит организация вашей съемки «под ключ»\nот выбора стиля до получения готовых фото и видео'
         }}
       </p>
