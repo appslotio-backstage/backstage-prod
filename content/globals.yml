@@ -1,15 +1,6 @@
-siteName: Backstage - Организация съемок под ключ
-titleSeparator: '|'
-defaultMeta:
-  title: Backstage - Организация съемок под ключ
+title: Backstage - Организация съемок под ключ
+seo:
   description: meta desc
-hero:
-  title: BACKSTAGE
-  subtitle: Организация съёмок «под ключ»
-  socials:
-    - name: Twitter
-      url: https://twitter.com/username
-      icon: mdi:twitter
-    - name: GitHub
-      url: https://github.com/username
-      icon: mdi:github
+  ogTitle: Backstage - Организация съемок под ключ
+  ogDescription: meta desc
+  ogImage: /favicon.ico
