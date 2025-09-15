@@ -10,5 +10,9 @@ export default defineContentConfig({
       type: 'data',
       source: 'pricing.yml',
     }),
+    styles: defineCollection({
+      type: 'data',
+      source: 'styles.yml',
+    }),
   },
 })

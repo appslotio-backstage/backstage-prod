@@ -17,6 +17,7 @@
               v-for="(item, i) in items"
               :key="`style-m-${i}`"
               class="snap-center snap-always shrink-0 w-full px-4"
+              :aria-label="item.alt || item.title"
             >
               <div
                 class="relative overflow-hidden rounded-[30px] bg-card mx-auto w-full"
@@ -113,6 +114,7 @@
                 :key="`card-${index}-${i}`"
                 class="relative overflow-hidden rounded-[30px] bg-card"
                 style="aspect-ratio: 460 / 365"
+                :aria-label="item.alt || item.title"
               >
                 <div
                   class="absolute inset-0 bg-center bg-cover"
@@ -189,27 +191,14 @@ const trackRefM = ref(null)
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
-const items = [
-  { src: 'images/style/1.png', title: 'Love story', subtitle: 'Романтические кадры для пары' },
-  {
-    src: 'images/style/2.png',
-    title: 'Индивидуальная съемка',
-    subtitle: 'Ваша уникальность в каждом кадре',
-  },
-  { src: 'images/style/3.png', title: 'Fashion-съёмка', subtitle: 'Стильные образы и тренды' },
-  { src: 'images/style/1.png', title: 'Love story', subtitle: 'Романтические кадры для пары' },
-  {
-    src: 'images/style/2.png',
-    title: 'Индивидуальная съемка',
-    subtitle: 'Ваша уникальность в каждом кадре',
-  },
-  { src: 'images/style/3.png', title: 'Fashion-съёмка', subtitle: 'Стильные образы и тренды' },
-]
+const stylesData = await useStyles()
+const items = computed(() => stylesData?.value?.meta.items || [])
 
 const slides = computed(() => {
   const chunked = []
-  for (let i = 0; i < items.length; i += 3) {
-    chunked.push(items.slice(i, i + 3))
+  const source = items.value || []
+  for (let i = 0; i < source.length; i += 3) {
+    chunked.push(source.slice(i, i + 3))
   }
   return chunked
 })
@@ -221,7 +210,7 @@ function snapToNearestM() {
   const slideWidth = viewport.clientWidth
   const index = Math.max(
     0,
-    Math.min(Math.round(viewport.scrollLeft / slideWidth), items.length - 1),
+    Math.min(Math.round(viewport.scrollLeft / slideWidth), (items.value?.length || 0) - 1),
   )
   const targetLeft = index * slideWidth
   if (Math.abs(viewport.scrollLeft - targetLeft) > 1) {
@@ -239,7 +228,7 @@ function nextM() {
   if (!viewport) return
   const slideWidth = viewport.clientWidth
   const idx = Math.round(viewport.scrollLeft / slideWidth)
-  const nextIndex = Math.min(idx + 1, items.length - 1)
+  const nextIndex = Math.min(idx + 1, (items.value?.length || 0) - 1)
   viewport.scrollTo({ left: nextIndex * slideWidth, behavior: 'smooth' })
 }
 
