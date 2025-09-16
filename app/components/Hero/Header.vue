@@ -143,9 +143,9 @@ const scrolled = ref(false)
 const navItems = [
   { label: 'Главная', href: '#hero' },
   { label: 'Услуги', href: '#services' },
+  { label: 'Портфолио', href: '#portfolio' },
   { label: 'Стили', href: '#styles' },
   { label: 'Прайс', href: '#pricing' },
-  { label: 'Портфолио', href: '#portfolio' },
   { label: 'Отзывы', href: '#reviews' },
 ]
 

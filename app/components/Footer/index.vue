@@ -188,11 +188,11 @@
 const leftNav = [
   { label: 'Главная', href: '#hero' },
   { label: 'Услуги', href: '#services' },
-  { label: 'Стили', href: '#styles' },
+  { label: 'Портфолио', href: '#portfolio' },
 ]
 const rightNav = [
+  { label: 'Стили', href: '#styles' },
   { label: 'Прайс', href: '#pricing' },
-  { label: 'Портфолио', href: '#portfolio' },
   { label: 'Отзывы', href: '#reviews' },
 ]
 const allNav = [...leftNav, ...rightNav]
