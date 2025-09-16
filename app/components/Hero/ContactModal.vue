@@ -197,6 +197,14 @@ import { reactive, ref } from 'vue'
 
 defineProps({
   isOpen: { type: Boolean, default: false },
+  // имя листа в Google Sheets для заявок из хедера
+  sheetName: { type: String, default: 'LeadsHeader' },
+  // URL развернутого Apps Script веб-приложения
+  appsScriptUrl: {
+    type: String,
+    default:
+      'https://script.google.com/macros/s/AKfycbzpv04Mkiw5Q7Vm_07nG_MiWAn2ZaM7V79_fNBwhwQurRqhoh_OKoM2MX3fmGwUw2U/exec',
+  },
 })
 
 const emit = defineEmits(['close'])
@@ -210,33 +218,33 @@ function handleClose() {
 }
 
 async function handleSubmit() {
-  if (!formData.name.trim() || !formData.phone.trim()) {
-    return
-  }
+  if (!formData.name.trim() || !formData.phone.trim()) return
 
   isSubmitting.value = true
-
   try {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-
-    console.log('Form submitted:', { ...formData })
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: formData.name.trim(),
+      phone: formData.phone.trim(),
+      source: 'header',
+      sheet: __props.sheetName,
+    }
+    await fetch(__props.appsScriptUrl, {
+      redirect: 'follow',
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+    })
 
     // Reset form
     formData.name = ''
     formData.phone = ''
 
-    // Close modal
+    // Close modal and show success toast
     emit('close')
-
-    // Show success notification after a short delay
     setTimeout(() => {
       showSuccessNotification.value = true
-
-      // Auto hide notification after 5 seconds
-      setTimeout(() => {
-        showSuccessNotification.value = false
-      }, 5000)
+      setTimeout(() => (showSuccessNotification.value = false), 5000)
     }, 300)
   } catch (error) {
     console.error('Error submitting form:', error)
