@@ -2,33 +2,103 @@ title: Мы можем
 item1:
   src: images/products/1.png
   title: Провести индивидуальную или групповую фотосъемку
+  description: Описание услуги
+  includes1: Текст текст текст текст текст текст текст
+  includes2: Текст текст текст текст текст текст текст
+  includes3: Текст текст текст текст текст текст текст
+  includes4: Текст текст текст текст текст текст текст
+  includes5:
+  includes6:
 item2:
   src: images/products/2.png
   title: Подобрать идеальный образ для фотосессий
+  description:
+  includes1: Пункт 1
+  includes2: Пункт 2
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item3:
   src: images/products/3.png
   title: Подобрать локацию для съемок
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item4:
   src: images/products/4.png
   title: Организовать видеосъемку с возможностью создания Reels
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item5:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item6:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item7:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item8:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item9:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item10:
   src: images/products/5.png
   title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item11:
   src:
   title:
