@@ -89,6 +89,74 @@
         </div>
       </Transition>
     </Teleport>
+
+    <!-- Contact Modal (collect name and phone after quiz) -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition-all duration-300 ease-out"
+        leave-active-class="transition-all duration-200 ease-in"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="showContact" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="closeContact" />
+          <div
+            class="relative bg-card rounded-2xl border border-orange-500 p-6 md:p-8 max-w-[520px] w-full"
+          >
+            <h3 class="font-display text-2xl text-white mb-4 text-center">Оставьте контакты</h3>
+            <p class="font-actay text-white/90 mb-6 text-center">
+              Укажите имя и номер телефона, мы свяжемся с вами. Ваши ответы будут отправлены вместе
+              с контактами.
+            </p>
+            <form class="space-y-4" @submit.prevent="submitContacts">
+              <div>
+                <input
+                  v-model="contact.name"
+                  type="text"
+                  placeholder="Имя"
+                  required
+                  class="w-full px-5 py-4 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                />
+              </div>
+              <div>
+                <input
+                  v-model="contact.phone"
+                  type="tel"
+                  placeholder="Телефон"
+                  required
+                  class="w-full px-5 py-4 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                />
+              </div>
+              <div class="mt-2 flex justify-center">
+                <UIButton type="submit" :disabled="submitting">
+                  <span v-if="!submitting">Отправить</span>
+                  <span v-else class="flex items-center gap-2">
+                    <svg class="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                      <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"
+                      />
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0A12 12 0 000 12h4z"
+                      />
+                    </svg>
+                    Отправка...
+                  </span>
+                </UIButton>
+              </div>
+            </form>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </section>
 </template>
 
@@ -134,6 +202,15 @@ const busy = ref(false)
 const showSuccess = ref(false)
 const answers = reactive({})
 
+// Contact modal state
+const showContact = ref(false)
+const submitting = ref(false)
+const contact = reactive({ name: '', phone: '' })
+
+// Apps Script Web App URL (replace with your deployed URL)
+const GOOGLE_APPS_SCRIPT_URL =
+  'https://script.google.com/macros/s/AKfycbzpv04Mkiw5Q7Vm_07nG_MiWAn2ZaM7V79_fNBwhwQurRqhoh_OKoM2MX3fmGwUw2U/exec'
+
 const isLast = computed(() => step.value === props.steps.length - 1)
 const current = computed(() => props.steps[step.value])
 
@@ -152,15 +229,52 @@ async function next() {
     step.value += 1
     return
   }
+  // Показать контактную форму вместо мгновенного завершения
+  showContact.value = true
+}
 
-  // submit
-  busy.value = true
+function closeContact() {
+  showContact.value = false
+}
+
+function buildAnswersPayload() {
+  const result = []
+  for (let i = 0; i < props.steps.length; i++) {
+    const stepDef = props.steps[i]
+    const value = answers[i]
+    const label = stepDef.options.find((o) => o.value === value)?.label || ''
+    result.push({ index: i + 1, question: stepDef.question, value, label })
+  }
+  return result
+}
+
+async function submitContacts() {
+  if (!contact.name.trim() || !contact.phone.trim()) return
+  submitting.value = true
   try {
-    // эмуляция отправки
-    await new Promise((r) => setTimeout(r, 800))
+    const payload = {
+      timestamp: new Date().toISOString(),
+      name: contact.name.trim(),
+      phone: contact.phone.trim(),
+      answers: buildAnswersPayload(),
+    }
+    const res = await fetch(GOOGLE_APPS_SCRIPT_URL, {
+      redirect: 'follow',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify(payload),
+    })
+    if (!res.ok) throw new Error('Failed to submit')
+    // success UI
+    showContact.value = false
     showSuccess.value = true
+  } catch (e) {
+    console.error(e)
+    // можно добавить уведомление об ошибке
   } finally {
-    busy.value = false
+    submitting.value = false
   }
 }
 </script>
