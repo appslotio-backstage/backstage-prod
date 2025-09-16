@@ -22,6 +22,8 @@
               <div
                 class="relative overflow-hidden rounded-[30px] bg-card mx-auto w-full"
                 style="aspect-ratio: 343 / 300; max-width: 460px"
+                @pointerdown.stop
+                @click="openDetails(item)"
               >
                 <div
                   class="absolute inset-0 bg-center bg-cover"
@@ -115,6 +117,8 @@
                 class="relative overflow-hidden rounded-[30px] bg-card"
                 style="aspect-ratio: 460 / 365"
                 :aria-label="item.alt || item.title"
+                @pointerdown.stop
+                @click="openDetails(item)"
               >
                 <div
                   class="absolute inset-0 bg-center bg-cover"
@@ -181,10 +185,72 @@
         </svg>
       </button>
     </div>
+
+    <!-- Details Modal -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition-opacity duration-200"
+        leave-active-class="transition-opacity duration-150"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="showDetails" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="absolute inset-0 bg-black/60" @click="showDetails = false" />
+          <div class="relative w-[694px] rounded-[30px] border border-[#F0651280] overflow-hidden">
+            <div
+              class="absolute inset-0 bg-center bg-cover"
+              :style="{ backgroundImage: `url(${detailsItem.src})` }"
+            />
+            <div class="absolute inset-0 bg-black/60" />
+            <div class="relative z-10 p-6 md:p-8 text-white flex flex-col">
+              <h3 class="font-actayWide font-bold text-[28px] leading-tight">
+                {{ detailsItem.title }}
+              </h3>
+              <p
+                v-if="detailsItem.description"
+                class="mt-3 font-actay text-[16px] leading-snug text-white/90"
+              >
+                {{ detailsItem.description }}
+              </p>
+              <div v-if="detailsItem.includes?.length" class="mt-4">
+                <p class="font-actayWide text-[16px] mb-2">Что входит:</p>
+                <ul class="space-y-1 text-[14px]">
+                  <li
+                    v-for="(inc, idx) in detailsItem.includes"
+                    :key="idx"
+                    class="flex items-start gap-2"
+                  >
+                    <span class="mt-[6px] inline-block w-1.5 h-1.5 rounded-full bg-white/80" />
+                    <span class="font-actay text-white/90">{{ inc }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-8 flex justify-center">
+                <UIButton @click="contactOpen = true">Заказать съемку</UIButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+
+    <!-- Contact Modal -->
+    <Teleport to="body">
+      <HeroContactModal
+        :is-open="contactOpen"
+        sheet-name="LeadsSelectStyle"
+        apps-script-url="https://script.google.com/macros/s/AKfycbzpv04Mkiw5Q7Vm_07nG_MiWAn2ZaM7V79_fNBwhwQurRqhoh_OKoM2MX3fmGwUw2U/exec"
+        @close="onContactClosed"
+      />
+    </Teleport>
   </section>
 </template>
 
 <script setup>
+import HeroContactModal from '@/components/Hero/ContactModal.vue'
+
 const viewportRefM = ref(null)
 const trackRefM = ref(null)
 
@@ -208,6 +274,15 @@ const items = computed(() => {
       alt: it?.alt || it?.title || '',
       title: it?.title || '',
       subtitle: it?.subtitle || '',
+      description: it?.description || it?.subtitle || '',
+      includes: [
+        it?.includes1,
+        it?.includes2,
+        it?.includes3,
+        it?.includes4,
+        it?.includes5,
+        it?.includes6,
+      ].filter((s) => !!(s && String(s).trim())),
     }))
     .filter((it) => it.src || it.title || it.subtitle || it.alt)
 })
@@ -274,6 +349,21 @@ onMounted(() => {
     viewport.removeEventListener('scroll', onScroll)
   })
 })
+
+// Details modal state
+const showDetails = ref(false)
+const detailsItem = ref({ src: '', title: '', description: '', includes: [] })
+function openDetails(item) {
+  detailsItem.value = item
+  showDetails.value = true
+}
+
+// Contact modal
+const contactOpen = ref(false)
+function onContactClosed() {
+  contactOpen.value = false
+  showDetails.value = false
+}
 
 let isDragging = false
 let startX = 0

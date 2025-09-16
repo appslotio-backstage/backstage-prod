@@ -108,6 +108,7 @@
           :key="`card-${i}`"
           class="relative overflow-hidden rounded-[30px] bg-card w-full md:basis-[calc(50%-20px)] lg:basis-[calc(33.333%-20px)] max-w-[460px] cursor-pointer"
           style="aspect-ratio: 460 / 365"
+          :aria-label="item.alt || item.title"
           @click="openDetails(item)"
         >
           <div

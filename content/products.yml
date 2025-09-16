@@ -1,6 +1,7 @@
 title: Мы можем
 item1:
   src: images/products/1.png
+  alt: Love story
   title: Провести индивидуальную или групповую фотосъемку
   description: Описание услуги
   includes1: Текст текст текст текст текст текст текст
@@ -11,6 +12,7 @@ item1:
   includes6:
 item2:
   src: images/products/2.png
+  alt: Love story
   title: Подобрать идеальный образ для фотосессий
   description:
   includes1: Пункт 1
@@ -21,6 +23,7 @@ item2:
   includes6:
 item3:
   src: images/products/3.png
+  alt: Love story
   title: Подобрать локацию для съемок
   description:
   includes1:
@@ -31,6 +34,7 @@ item3:
   includes6:
 item4:
   src: images/products/4.png
+  alt: Love story
   title: Организовать видеосъемку с возможностью создания Reels
   description:
   includes1:
@@ -41,6 +45,7 @@ item4:
   includes6:
 item5:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -51,6 +56,7 @@ item5:
   includes6:
 item6:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -61,6 +67,7 @@ item6:
   includes6:
 item7:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -71,6 +78,7 @@ item7:
   includes6:
 item8:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -81,6 +89,7 @@ item8:
   includes6:
 item9:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -91,6 +100,7 @@ item9:
   includes6:
 item10:
   src: images/products/5.png
+  alt: Love story
   title: Профессионально обработать ваши фото и видео
   description:
   includes1:
@@ -100,5 +110,13 @@ item10:
   includes5:
   includes6:
 item11:
-  src:
-  title:
+  src: images/products/5.png
+  alt: Love story
+  title: Профессионально обработать ваши фото и видео
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:

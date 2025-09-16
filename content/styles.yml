@@ -3,48 +3,118 @@ item1:
   alt: Love story
   title: Love story
   subtitle: Романтические кадры для пары
+  description: Короткое описание стиля
+  includes1: Пункт 1
+  includes2: Пункт 2
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item2:
   src: /images/style/2.png
   alt: Индивидуальная съемка
   title: Индивидуальная съемка
   subtitle: Ваша уникальность в каждом кадре
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item3:
   src: /images/style/3.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item4:
   src: /images/style/4.png
   alt: Love story
   title: Love story
   subtitle: Романтические кадры для пары
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item5:
   src: /images/style/5.png
   alt: Индивидуальная съемка
   title: Индивидуальная съемка
   subtitle: Ваша уникальность в каждом кадре
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item6:
   src: /images/style/6.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item7:
   src: /images/style/1.png
   alt: Fashion-съёмка
   title: Fashion-съёмка
   subtitle: Стильные образы и тренды
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item8:
   src: ''
   alt: ''
   title: ''
   subtitle: ''
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item9:
   src: ''
   alt: ''
   title: ''
   subtitle: ''
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
 item10:
   src: ''
   alt: ''
   title: ''
   subtitle: ''
+  description:
+  includes1:
+  includes2:
+  includes3:
+  includes4:
+  includes5:
+  includes6:
