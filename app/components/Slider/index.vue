@@ -4,12 +4,12 @@
       <h2
         class="font-gilroy font-semibold text-4xl leading-none tracking-normal text-text self-start"
       >
-        {{ portfolio?.title || 'Портфолио' }}
+        {{ portfolioData?.meta?.body?.title }}
       </h2>
       <p
         class="mt-3 !text-accent text-center mb-8 font-actay font-normal text-2xl leading-none tracking-normal"
       >
-        {{ portfolio?.subtitle || '' }}
+        {{ portfolioData?.meta?.body?.subtitle }}
       </p>
     </div>
     <ClientOnly>
