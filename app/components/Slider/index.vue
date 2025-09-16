@@ -15,7 +15,7 @@
     <ClientOnly>
       <div
         ref="viewportRef"
-        class="relative overflow-x-auto no-scrollbar select-none snap-x snap-mandatory scroll-smooth touch-pan-x overscroll-x-contain"
+        class="relative overflow-x-auto no-scrollbar select-none snap-x snap-mandatory scroll-smooth touch-auto overscroll-x-contain"
         @pointerdown="onPointerDown"
         @pointermove="onPointerMove"
         @pointerup="onPointerUp"
@@ -311,7 +311,10 @@ const effectiveSlides = computed(() => {
 })
 
 let isDragging = false
+let isPointerDown = false
+let isHorizontalDrag = false
 let startX = 0
+let startY = 0
 let scrollStart = 0
 let autoplayTimer = null
 const currentIndex = ref(0)
@@ -321,25 +324,50 @@ let scrollRaf = null
 function onPointerDown(e) {
   const viewport = viewportRef.value
   if (!viewport) return
-  isDragging = true
+  isPointerDown = true
+  isDragging = false
+  isHorizontalDrag = false
   startX = e.clientX
+  startY = e.clientY
   scrollStart = viewport.scrollLeft
-  viewport.setPointerCapture(e.pointerId)
   // Pause autoplay while user interacts
   stopAutoplay()
 }
 
 function onPointerMove(e) {
-  if (!isDragging) return
+  if (!isPointerDown) return
   const viewport = viewportRef.value
   if (!viewport) return
   const dx = e.clientX - startX
+  const dyVal = e.clientY - startY
+  if (!isDragging) {
+    const absX = Math.abs(dx)
+    const absY = Math.abs(dyVal)
+    const threshold = 6
+    if (absX < threshold && absY < threshold) return
+    if (absY > absX) {
+      // vertical intent → release and let page scroll
+      isPointerDown = false
+      isDragging = false
+      isHorizontalDrag = false
+      return
+    }
+    // horizontal intent
+    isDragging = true
+    isHorizontalDrag = true
+    try {
+      viewport.setPointerCapture(e.pointerId)
+    } catch {
+      // ignore
+    }
+  }
+  if (!isHorizontalDrag) return
   // Use direct set with no smooth to avoid fighting CSS snap
   viewport.scrollLeft = scrollStart - dx
 }
 
 function onPointerUp(e) {
-  if (!isDragging) return
+  if (!isPointerDown && !isDragging) return
   const viewport = viewportRef.value
   if (viewport && e?.pointerId) {
     try {
@@ -349,20 +377,21 @@ function onPointerUp(e) {
     }
   }
   // Decide slide based on drag distance with low threshold
-  const dx = (e.clientX || 0) - startX
-  const threshold = (viewport?.clientWidth || 0) * 0.06
-  isDragging = false
-  if (viewport) {
-    if (dx <= -threshold) {
-      next()
-      return
-    }
-    if (dx >= threshold) {
-      prev()
-      return
+  if (isHorizontalDrag) {
+    const dx = (e.clientX || 0) - startX
+    const threshold = (viewport?.clientWidth || 0) * 0.06
+    if (viewport) {
+      if (dx <= -threshold) {
+        next()
+      } else if (dx >= threshold) {
+        prev()
+      }
     }
   }
   // Do not snap immediately here; let momentum finish and onScroll handler snap once
+  isPointerDown = false
+  isDragging = false
+  isHorizontalDrag = false
 }
 
 function _snapToNearest() {
