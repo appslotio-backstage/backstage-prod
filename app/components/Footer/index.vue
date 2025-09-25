@@ -180,6 +180,40 @@
           </a>
         </div>
       </div>
+
+      <!-- Big blurred wordmark at bottom -->
+      <div class="mt-[-30px] flex justify-center">
+        <!-- Desktop -->
+        <div
+          class="hidden md:block font-display font-black uppercase leading-normal text-center select-none pointer-events-none text-[180px]"
+          style="color: rgba(240, 101, 18, 0.2); filter: blur(7.5px)"
+        >
+          Backstage
+        </div>
+        <!-- Mobile -->
+        <div
+          class="mt-6 md:hidden font-display font-black uppercase leading-normal text-center select-none pointer-events-none text-[55px]"
+          style="color: rgba(240, 101, 18, 0.2); filter: blur(2.224576234817505px)"
+        >
+          Backstage
+        </div>
+      </div>
+
+      <!-- Bottom legal texts -->
+      <div class="mt-8">
+        <div class="hidden md:flex justify-center items-center gap-[180px]">
+          <p class="font-actay text-base text-text">© 2025 Все права защищены</p>
+          <a href="#" class="font-actay text-base text-text underline">
+            Политика конфиденциальности
+          </a>
+        </div>
+        <div class="md:hidden flex flex-col items-center gap-[30px]">
+          <p class="font-actay text-base text-text">© 2025 Все права защищены</p>
+          <a href="#" class="font-actay text-base text-text underline">
+            Политика конфиденциальности
+          </a>
+        </div>
+      </div>
     </div>
   </footer>
 </template>

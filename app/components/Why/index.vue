@@ -14,7 +14,7 @@
       Почему <span class="text-accent">стоит доверить</span> <br />
       организацию <span class="text-accent">Backstage</span>
     </h2>
-    <p class="body-text mx-auto mt-3">
+    <p class="body-text mx-auto mt-3 text-center">
       Мы создаем не просто фотосессии, а уникальные истории, <br class="hidden lg:block" />
       где каждая деталь отражает вашу индивидуальность
     </p>
