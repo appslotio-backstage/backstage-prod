@@ -221,18 +221,69 @@
           </button>
         </div>
 
-        <UIButton class="mx-auto hidden md:inline-flex">Подробнее</UIButton>
+        <UIButton class="mx-auto hidden md:inline-flex" @click="showDetails = true"
+          >Подробнее</UIButton
+        >
       </div>
 
       <!-- Mobile CTA -->
       <div class="mt-5 md:hidden flex justify-center">
-        <UIButton>Подробнее</UIButton>
+        <UIButton @click="showDetails = true">Подробнее</UIButton>
       </div>
     </ClientOnly>
+
+    <!-- Details Modal -->
+    <Teleport to="body">
+      <Transition
+        enter-active-class="transition-opacity duration-200"
+        leave-active-class="transition-opacity duration-150"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="showDetails" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div class="absolute inset-0 bg-black/60" @click="showDetails = false" />
+          <div
+            class="relative w-full max-w-[694px] rounded-[30px] border border-[#F0651280] overflow-hidden bg-card"
+          >
+            <div class="relative z-10 p-6 md:p-8 text-white flex flex-col">
+              <h3 class="font-actayWide font-bold text-[28px] leading-tight">
+                {{ detailsTitle }}
+              </h3>
+              <p
+                v-if="detailsText"
+                class="mt-3 font-actay text-[16px] leading-snug text-white/90 whitespace-pre-line"
+              >
+                {{ detailsText }}
+              </p>
+              <div class="mt-8 flex justify-center gap-3">
+                <UIButton @click="openContact()">Заказать съемку</UIButton>
+                <UIButton class="!bg-white !text-black" @click="showDetails = false"
+                  >Закрыть</UIButton
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
+
+    <!-- Contact Modal -->
+    <Teleport to="body">
+      <HeroContactModal
+        :is-open="contactOpen"
+        sheet-name="LeadsPortfolio"
+        apps-script-url="https://script.google.com/macros/s/AKfycbzpv04Mkiw5Q7Vm_07nG_MiWAn2ZaM7V79_fNBwhwQurRqhoh_OKoM2MX3fmGwUw2U/exec"
+        @close="onContactClosed"
+      />
+    </Teleport>
   </section>
 </template>
 
 <script setup>
+import HeroContactModal from '@/components/Hero/ContactModal.vue'
+
 const viewportRef = ref(null)
 const trackRef = ref(null)
 
@@ -320,6 +371,29 @@ let autoplayTimer = null
 const currentIndex = ref(0)
 const segmentsCount = computed(() => effectiveSlides.value.length)
 let scrollRaf = null
+
+// Details modal content and state
+const showDetails = ref(false)
+const contactOpen = ref(false)
+const detailsTitle = computed(() => {
+  const root =
+    portfolioData?.value?.meta?.body || portfolioData?.value?.meta || portfolioData?.value || {}
+  return root.detailsTitle || root.title || 'Подробнее о портфолио'
+})
+const detailsText = computed(() => {
+  const root =
+    portfolioData?.value?.meta?.body || portfolioData?.value?.meta || portfolioData?.value || {}
+  return root.detailsText || ''
+})
+
+function openContact() {
+  showDetails.value = false
+  contactOpen.value = true
+}
+
+function onContactClosed() {
+  contactOpen.value = false
+}
 
 function onPointerDown(e) {
   const viewport = viewportRef.value
