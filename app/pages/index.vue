@@ -10,7 +10,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 100, duration: 600, easing: 'easeOut' },
+          transition: { delay: 100, duration: 400, easing: 'easeOut' },
         }"
       >
         <Why />
@@ -24,7 +24,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 150, duration: 600, easing: 'easeOut' },
+          transition: { delay: 150, duration: 400, easing: 'easeOut' },
         }"
       >
         <Slider />
@@ -38,7 +38,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 200, duration: 600, easing: 'easeOut' },
+          transition: { delay: 200, duration: 400, easing: 'easeOut' },
         }"
       >
         <Products />
@@ -51,7 +51,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 250, duration: 600, easing: 'easeOut' },
+          transition: { delay: 250, duration: 400, easing: 'easeOut' },
         }"
       >
         <SelectStyle />
@@ -64,7 +64,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 275, duration: 600, easing: 'easeOut' },
+          transition: { delay: 275, duration: 400, easing: 'easeOut' },
         }"
       />
 
@@ -76,7 +76,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 300, duration: 600, easing: 'easeOut' },
+          transition: { delay: 300, duration: 400, easing: 'easeOut' },
         }"
       >
         <Price />
@@ -89,7 +89,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 350, duration: 600, easing: 'easeOut' },
+          transition: { delay: 350, duration: 400, easing: 'easeOut' },
         }"
       >
         <Order />
@@ -102,7 +102,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 400, duration: 600, easing: 'easeOut' },
+          transition: { delay: 400, duration: 400, easing: 'easeOut' },
         }"
       >
         <Quiz />
@@ -116,7 +116,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 450, duration: 600, easing: 'easeOut' },
+          transition: { delay: 450, duration: 400, easing: 'easeOut' },
         }"
       >
         <Reviews />
@@ -129,7 +129,7 @@
         :visible="{
           opacity: 1,
           y: 0,
-          transition: { delay: 500, duration: 600, easing: 'easeOut' },
+          transition: { delay: 500, duration: 400, easing: 'easeOut' },
         }"
       >
         <Order :with-heading="false" />
