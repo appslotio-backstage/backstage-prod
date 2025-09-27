@@ -34,7 +34,7 @@
         >
           <div
             v-if="isOpen"
-            class="relative w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[520px] mx-auto"
+            class="relative w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[520px] mx-auto contact-modal"
           >
             <div
               class="relative bg-card rounded-2xl border border-orange-500 p-4 sm:p-6 md:p-8 pt-10 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 overflow-hidden"
@@ -253,3 +253,12 @@ async function handleSubmit() {
   }
 }
 </script>
+
+<style scoped>
+.contact-modal {
+  background-image: url('/images/contact-modal-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+</style>
