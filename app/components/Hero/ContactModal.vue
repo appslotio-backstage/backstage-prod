@@ -8,7 +8,10 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <div
+        v-if="isOpen"
+        class="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
+      >
         <Transition
           enter-active-class="transition-all duration-300 ease-out"
           leave-active-class="transition-all duration-200 ease-in"
@@ -32,15 +35,12 @@
           leave-from-class="opacity-100 scale-100 translate-y-0"
           leave-to-class="opacity-0 scale-95 translate-y-4"
         >
-          <div
-            v-if="isOpen"
-            class="relative w-full max-w-[90vw] sm:max-w-[420px] md:max-w-[480px] lg:max-w-[520px] mx-auto contact-modal"
-          >
+          <div v-if="isOpen" class="relative w-full max-w-[90vw] mx-auto">
             <div
-              class="relative bg-card rounded-2xl border border-orange-500 p-4 sm:p-6 md:p-8 pt-10 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 overflow-hidden"
+              class="relative bg-card rounded-[30px] border border-[#F06512] overflow-hidden w-full max-w-[343px] h-auto pt-[40px] px-[20px] pb-[24px] mx-auto contact-modal md:w-[600px] md:h-[443px] md:pt-[64px] md:px-[30px] md:pb-[30px]"
             >
               <button
-                class="absolute top-4 right-4 sm:top-6 sm:right-6 text-white hover:text-orange-500 transition-colors z-10"
+                class="absolute top-4 right-4 sm:top-6 sm:right-6 text-[#D4D4D4] transition-colors z-10"
                 aria-label="Закрыть"
                 @click="handleClose"
               >
@@ -53,14 +53,8 @@
                   class="sm:w-6 sm:h-6"
                 >
                   <path
-                    d="M6 6L18 18"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M18 6L6 18"
-                    stroke="currentColor"
+                    d="M20 20L4 4M20 4L4 20"
+                    stroke="#D4D4D4"
                     stroke-width="1.5"
                     stroke-linecap="round"
                   />
@@ -69,25 +63,28 @@
 
               <div class="relative z-10">
                 <h2
-                  class="font-display text-xl sm:text-2xl md:text-[32px] font-semibold text-white leading-none mb-3 sm:mb-4 md:mb-6"
+                  class="font-gilroy text-[32px] leading-[32px] md:text-[48px] md:leading-[48px] font-semibold text-[#D4D4D4]"
                 >
                   Свяжитесь с нами
                 </h2>
 
                 <p
-                  class="font-actay text-sm sm:text-base md:text-xl text-white leading-tight mb-4 sm:mb-6 md:mb-8 max-w-[280px] sm:max-w-[320px] md:max-w-[380px]"
+                  class="font-actay text-[16px] leading-[100%] md:text-[20px] md:leading-[100%] font-normal text-[#D4D4D4] mt-[12px] md:mt-[20px]"
                 >
                   Оставьте свои контакты и мы свяжемся с вами для уточнения деталей съемки
                 </p>
 
-                <form class="space-y-4 sm:space-y-5" @submit.prevent="handleSubmit">
+                <form
+                  class="space-y-[16px] mt-[24px] md:space-y-[20px] md:mt-[30px]"
+                  @submit.prevent="handleSubmit"
+                >
                   <div class="relative">
                     <input
                       v-model="formData.name"
                       type="text"
                       placeholder="Имя"
                       required
-                      class="w-full px-4 py-3 sm:px-5 sm:py-5 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                      class="w-full h-[51px] px-4 rounded-[20px] border border-[#838383] bg-[rgba(74,74,74,0.01)] backdrop-blur-[6px] text-white placeholder:text-white/70 font-actay text-[16px] focus:outline-none"
                     />
                   </div>
 
@@ -97,14 +94,14 @@
                       type="tel"
                       placeholder="Телефон"
                       required
-                      class="w-full px-4 py-3 sm:px-5 sm:py-5 rounded-full border border-gray-400 bg-white/10 backdrop-blur-sm text-white placeholder:text-white/70 font-actay text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all"
+                      class="w-full h-[51px] px-4 rounded-[20px] border border-[#838383] bg-[rgba(74,74,74,0.01)] backdrop-blur-[6px] text-white placeholder:text-white/70 font-actay text-[16px] focus:outline-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     :disabled="isSubmitting"
-                    class="w-full mt-6 sm:mt-8 px-6 py-4 sm:px-10 sm:py-5 bg-accent text-white font-actay text-sm sm:text-base font-normal rounded-full hover:bg-orange-600 disabled:bg-orange-400 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg transform hover:scale-105 disabled:transform-none"
+                    class="mx-auto block w-full md:w-[260px] mt-[24px] md:mt-[40px] px-6 py-4 bg-accent text-white font-actay text-base font-normal rounded-full hover:bg-orange-600 disabled:bg-orange-400 disabled:cursor-not-allowed transition-all focus:outline-none"
                   >
                     <span v-if="!isSubmitting">Заказать съемку</span>
                     <span v-else class="flex items-center justify-center">
